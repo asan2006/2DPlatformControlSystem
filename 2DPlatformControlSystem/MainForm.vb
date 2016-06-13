@@ -11,7 +11,13 @@
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        LinearVelModeCfg1.LdelayTime = 132456
+        Dim test As Boolean()
+        test = {1, 0, 1, 0}
+        DaqAcqCfg1.chartOption = test
+
     End Sub
 
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        MsgBox(DaqAcqCfg1.strLineChart)
+    End Sub
 End Class

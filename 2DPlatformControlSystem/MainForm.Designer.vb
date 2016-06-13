@@ -25,9 +25,10 @@ Partial Class MainForm
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
         Me.tbAbout = New System.Windows.Forms.TabPage()
         Me.txtAbout = New System.Windows.Forms.TextBox()
+        Me.DaqAcqCfg1 = New _2DPlatformControlSystem.DaqAcqCfg()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.tbTrdControl.SuspendLayout()
         Me.tbAbout.SuspendLayout()
@@ -47,8 +48,9 @@ Partial Class MainForm
         '
         'tbTrdControl
         '
+        Me.tbTrdControl.Controls.Add(Me.DaqAcqCfg1)
+        Me.tbTrdControl.Controls.Add(Me.Button2)
         Me.tbTrdControl.Controls.Add(Me.Button1)
-        Me.tbTrdControl.Controls.Add(Me.LinearVelModeCfg1)
         Me.tbTrdControl.Location = New System.Drawing.Point(4, 22)
         Me.tbTrdControl.Name = "tbTrdControl"
         Me.tbTrdControl.Padding = New System.Windows.Forms.Padding(3)
@@ -59,19 +61,12 @@ Partial Class MainForm
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(153, 363)
+        Me.Button1.Location = New System.Drawing.Point(118, 324)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "Button1"
         Me.Button1.UseVisualStyleBackColor = True
-        '
-        'LinearVelModeCfg1
-        '
-        Me.LinearVelModeCfg1.Location = New System.Drawing.Point(62, 37)
-        Me.LinearVelModeCfg1.Name = "LinearVelModeCfg1"
-        Me.LinearVelModeCfg1.Size = New System.Drawing.Size(222, 223)
-        Me.LinearVelModeCfg1.TabIndex = 0
         '
         'tbAbout
         '
@@ -93,6 +88,29 @@ Partial Class MainForm
         Me.txtAbout.Size = New System.Drawing.Size(752, 483)
         Me.txtAbout.TabIndex = 0
         '
+        'DaqAcqCfg1
+        '
+        Me.DaqAcqCfg1.ADChanCount = 4
+        Me.DaqAcqCfg1.aveNum = 1
+        Me.DaqAcqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""W1"")"
+        Me.DaqAcqCfg1.IsDaqEnable = False
+        Me.DaqAcqCfg1.Location = New System.Drawing.Point(8, 6)
+        Me.DaqAcqCfg1.Name = "DaqAcqCfg1"
+        Me.DaqAcqCfg1.ScanCount = 100000
+        Me.DaqAcqCfg1.scanFileFormatMode = "XLS"
+        Me.DaqAcqCfg1.ScanIntrv = 200
+        Me.DaqAcqCfg1.Size = New System.Drawing.Size(511, 225)
+        Me.DaqAcqCfg1.TabIndex = 2
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(280, 324)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 1
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -113,6 +131,7 @@ Partial Class MainForm
     Friend WithEvents tbTrdControl As TabPage
     Friend WithEvents tbAbout As TabPage
     Friend WithEvents txtAbout As TextBox
-    Friend WithEvents LinearVelModeCfg1 As LinearVelModeCfg
     Friend WithEvents Button1 As Button
+    Friend WithEvents DaqAcqCfg1 As DaqAcqCfg
+    Friend WithEvents Button2 As Button
 End Class

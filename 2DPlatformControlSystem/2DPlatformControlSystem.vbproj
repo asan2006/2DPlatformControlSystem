@@ -95,6 +95,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Unit\DaqAcqCfg.Designer.vb">
+      <DependentUpon>DaqAcqCfg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\DaqAcqCfg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Unit\LinearVelModeCfg.Designer.vb">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>
     </Compile>
@@ -117,6 +123,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\DaqAcqCfg.resx">
+      <DependentUpon>DaqAcqCfg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearVelModeCfg.resx">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>
