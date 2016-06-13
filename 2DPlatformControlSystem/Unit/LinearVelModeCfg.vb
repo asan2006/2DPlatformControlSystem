@@ -1,0 +1,81 @@
+﻿Public Class LinearVelModeCfg
+    Public Property LDelayTime As Double
+        Get
+            Return CDbl(txtLDelayTime.Text)
+        End Get
+        Set(value As Double)
+            txtLDelayTime.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property LStrVel As Double
+        Get
+            Return 0
+        End Get
+        Set(value As Double)
+
+        End Set
+    End Property
+
+    Public Property LMaxVel As Double
+        Get
+            Return CDbl(txtLMaxSpeed.Text)
+        End Get
+        Set(value As Double)
+            txtLMaxSpeed.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property LTacc As Double
+        Get
+            Return CDbl(txtLAccTime.Text)
+        End Get
+        Set(value As Double)
+            txtLAccTime.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property LTdec As Double
+        Get
+            Return CDbl(txtLDecTime.Text)
+        End Get
+        Set(value As Double)
+            txtLDecTime.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property LTunif As Double
+        Get
+            Return CDbl(txtLUnifTime.Text)
+        End Get
+        Set(value As Double)
+            txtLUnifTime.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property LCurSpeed As Double
+        Get
+            Return CDbl(txtLCurSpeed.Text)
+        End Get
+        Set(value As Double)
+            txtLCurSpeed.Text = value.ToString
+        End Set
+    End Property
+
+    Public Property IsLinearVelMode As Boolean
+        Get
+            Return chkLMode.Checked
+        End Get
+        Set(value As Boolean)
+            chkLMode.Checked = value
+        End Set
+    End Property
+    Sub New()
+
+        ' 此调用是设计器所必需的。
+        InitializeComponent()
+
+        ' 在 InitializeComponent() 调用之后添加任何初始化。
+    End Sub
+
+End Class
