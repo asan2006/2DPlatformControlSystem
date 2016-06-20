@@ -22,10 +22,13 @@ Partial Class TrdControlPanel
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.btnMotion = New System.Windows.Forms.Button()
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
+        Me.tm = New System.Windows.Forms.Timer(Me.components)
+        Me.LinearChart1 = New _2DPlatformControlSystem.LinearChart()
         Me.DaqCfg1 = New _2DPlatformControlSystem.DaqCfg()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
         Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
@@ -47,7 +50,7 @@ Partial Class TrdControlPanel
         '
         'btnMotion
         '
-        Me.btnMotion.Location = New System.Drawing.Point(47, 468)
+        Me.btnMotion.Location = New System.Drawing.Point(47, 465)
         Me.btnMotion.Name = "btnMotion"
         Me.btnMotion.Size = New System.Drawing.Size(121, 43)
         Me.btnMotion.TabIndex = 4
@@ -56,7 +59,7 @@ Partial Class TrdControlPanel
         '
         'btnStop
         '
-        Me.btnStop.Location = New System.Drawing.Point(405, 468)
+        Me.btnStop.Location = New System.Drawing.Point(405, 465)
         Me.btnStop.Name = "btnStop"
         Me.btnStop.Size = New System.Drawing.Size(121, 43)
         Me.btnStop.TabIndex = 4
@@ -65,12 +68,23 @@ Partial Class TrdControlPanel
         '
         'btnQuit
         '
-        Me.btnQuit.Location = New System.Drawing.Point(763, 468)
+        Me.btnQuit.Location = New System.Drawing.Point(763, 465)
         Me.btnQuit.Name = "btnQuit"
         Me.btnQuit.Size = New System.Drawing.Size(121, 43)
         Me.btnQuit.TabIndex = 4
         Me.btnQuit.Text = "Quit"
         Me.btnQuit.UseVisualStyleBackColor = True
+        '
+        'tm
+        '
+        Me.tm.Interval = 10
+        '
+        'LinearChart1
+        '
+        Me.LinearChart1.Location = New System.Drawing.Point(3, 229)
+        Me.LinearChart1.Name = "LinearChart1"
+        Me.LinearChart1.Size = New System.Drawing.Size(397, 208)
+        Me.LinearChart1.TabIndex = 7
         '
         'DaqCfg1
         '
@@ -129,6 +143,7 @@ Partial Class TrdControlPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.LinearChart1)
         Me.Controls.Add(Me.DaqCfg1)
         Me.Controls.Add(Me.LoadCfgFile1)
         Me.Controls.Add(Me.btnQuit)
@@ -136,7 +151,7 @@ Partial Class TrdControlPanel
         Me.Controls.Add(Me.btnMotion)
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "TrdControlPanel"
-        Me.Size = New System.Drawing.Size(922, 547)
+        Me.Size = New System.Drawing.Size(922, 541)
         Me.GroupBox1.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -150,4 +165,6 @@ Partial Class TrdControlPanel
     Friend WithEvents btnQuit As Button
     Friend WithEvents LoadCfgFile1 As LoadCfgFile
     Friend WithEvents DaqCfg1 As DaqCfg
+    Friend WithEvents LinearChart1 As LinearChart
+    Friend WithEvents tm As Timer
 End Class

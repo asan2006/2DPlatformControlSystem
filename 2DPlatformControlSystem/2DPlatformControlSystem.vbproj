@@ -58,6 +58,7 @@
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -104,6 +105,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Panel\AboutPanel.Designer.vb">
+      <DependentUpon>AboutPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\AboutPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Panel\TrdControlPanel.Designer.vb">
       <DependentUpon>TrdControlPanel.vb</DependentUpon>
     </Compile>
@@ -114,6 +121,12 @@
       <DependentUpon>DaqCfg.vb</DependentUpon>
     </Compile>
     <Compile Include="Unit\DaqCfg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\LinearChart.Designer.vb">
+      <DependentUpon>LinearChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\LinearChart.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Unit\LinearVelModeCfg.Designer.vb">
@@ -145,11 +158,17 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panel\AboutPanel.resx">
+      <DependentUpon>AboutPanel.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panel\TrdControlPanel.resx">
       <DependentUpon>TrdControlPanel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\DaqCfg.resx">
       <DependentUpon>DaqCfg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\LinearChart.resx">
+      <DependentUpon>LinearChart.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearVelModeCfg.resx">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>

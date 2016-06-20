@@ -7,18 +7,15 @@
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
         Me.Text = AppInfo.AssemblyName
-
-
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        'Dim test As Boolean()
-        'test = {8, 0, 10, 0}
-        'DaqAcqCfg1.chartOption = test
+        TabControl1.SelectedTab = tbAbout
 
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-        'MsgBox(DaqAcqCfg1.strLineChart)
+    Private Sub TabControl1_Selected(sender As Object, e As TabControlEventArgs) Handles TabControl1.Selected
+
+        Dim tc As TabControl = sender
+        If tc.SelectedTab.Name = tbTrdControl.Name Then
+            TrdControlPanel1.tm.Enabled = True
+        End If
     End Sub
 End Class

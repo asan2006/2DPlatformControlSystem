@@ -59,8 +59,6 @@ Module Module_OtherFun
         Next
         SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange)
 
-
-
     End Sub
 
 
@@ -115,18 +113,16 @@ Module Module_OtherFun
 
     Private Sub SaveToXls(ByVal StrData As String, ByVal StrExpCondition As String, ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing)
 
-        'StrChartRange = "A:B" or "A1:B9" or "A:A,D:D"
-
         If String.IsNullOrEmpty(StrData) Or String.IsNullOrEmpty(StrFileName) Then
             Return
         Else
             Try
                 Dim xlApp As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
                 xlApp.DefaultFilePath = ""
-                xlApp.DisplayAlerts = True
                 xlApp.SheetsInNewWorkbook = 1
                 Dim xlBook As Microsoft.Office.Interop.Excel.Workbook = xlApp.Workbooks.Add(True)
                 Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add()
+
                 System.Windows.Forms.Clipboard.SetDataObject(StrData)
                 xlSheet.Paste()
 
@@ -141,27 +137,23 @@ Module Module_OtherFun
                     LineChart(xlSheet, xlSheet.Range(StrChartRange))
                 End If
 
-                'save as xlWorkbookDefault(*.xlsx)
                 'here avoid the data overwrite alert info
                 xlApp.DisplayAlerts = False
-                xlApp.AlertBeforeOverwriting = False
+                'xlApp.AlertBeforeOverwriting = False
                 'here avoid the defalt excel path is windows/system32
-                StrFileName = System.IO.Path.GetFullPath(StrFileName)
 
-                'xlBook.SaveAs(StrFileName, Type.Missing,
-                '    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
-                '    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
-                xlBook.SaveAs(StrFileName, Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault,
-                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive,
-                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing)
+                'Use it more than office 2007 version, And add the Extension name ".xlsx"
+                StrFileName = System.IO.Path.GetFullPath(StrFileName) & ".xlsx"
+                xlBook.SaveAs(StrFileName)
+
+                'Release excel application
                 xlBook.Close()
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlSheet)
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlBook)
+                xlApp.Quit()
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlSheet)
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlBook)
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlApp)
                 xlSheet = Nothing
                 xlBook = Nothing
-                xlApp.Workbooks.Close()
-                xlApp.Quit()
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlApp)
                 xlApp = Nothing
                 GC.Collect()
             Catch ex As Exception

@@ -311,12 +311,12 @@ Partial Class DaqCfg
         Me.chkDaq2005Enable.Text = "Daq2005Enable"
         Me.chkDaq2005Enable.UseVisualStyleBackColor = True
         '
-        'DaqAcqCfg
+        'DaqCfg
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GroupBox6)
-        Me.Name = "DaqAcqCfg"
+        Me.Name = "DaqCfg"
         Me.Size = New System.Drawing.Size(511, 225)
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()

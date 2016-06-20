@@ -1,4 +1,50 @@
 ﻿Public Class TrdControlPanel
+
+    Const card8158 As Short = 0
+    Const card2005 As Short = 0
+
+    'preTime/prePos used to calc feedback speed
+    'Dim preTime As DateTime
+    Dim preTime As Long = 0
+    Dim prePosT As Double = 0
+    Dim preCount As Long
+    Dim prePos As Double = 0
+    Dim CPUfreq As Long
+
+    Dim aveNum As Integer
+    Dim expInfo As String
+    Dim fileName As String
+    Dim xlsHeader() As String
+
+    'unit by second
+    Dim TDuration As Double = 0
+    'control the decode/incode data acquire is continue or over ???
+    Dim motionStatus As Boolean = False
+    'a streamwrite obj to write data to txt file
+    Dim sw As IO.StreamWriter
+
+    Dim LstrVel As Double
+    Dim LmaxVel As Double
+    Dim LTacc As Double
+    Dim LTdec As Double
+    Dim LTUnif As Double
+    Dim LTdelay As Double
+    Dim RstrVel As Double
+    Dim RmaxVel As Double
+    Dim RTacc As Double
+    Dim RTdec As Double
+    Dim RTUnif As Double
+    Dim RDist As Double
+    Dim axis As Short
+
+    Dim motionMode As M_MODE
+    'targetPos is used for velocity motion mode to stop motion at target position
+    Dim targetPos As Double
+
+    Dim MotionThread As System.Threading.Thread
+    Dim motionDirect As Boolean = True  'when value is true ,motion speed is positive;else is negative
+
+
     Sub New()
 
         ' 此调用是设计器所必需的。
@@ -71,24 +117,194 @@
     End Sub
 
     Private Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
-        Dim xlApp As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
-        Dim xlBook As Microsoft.Office.Interop.Excel.Workbook = xlApp.Workbooks.Add(True)
-        Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add()
-        Dim fullFileName As String = System.IO.Path.GetFullPath(DaqCfg1.fileName) & ".xlsx"
-        'Use it more than office 2007 version, And add the Extension name ".xlsx"
-        xlApp.DisplayAlerts = False
-        xlBook.SaveAs(fullFileName)
 
-        'Release excel application
-        xlBook.Close()
-        xlApp.Quit()
-        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlSheet)
-        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlBook)
-        System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlApp)
-        xlSheet = Nothing
-        xlBook = Nothing
-        xlApp = Nothing
-        GC.Collect()
+        'initial preCount , CPUfreq , prePos
+        'intial preCount after start 2005 card
+        'QueryPerformanceCounter(preCount)
+        QueryPerformanceFrequency(CPUfreq)
+        B_8158_get_position(0, prePos)
 
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'daq2005     
+        Dim ScanIntrv As Integer = DaqCfg1.ScanIntrv
+        Dim ScanCount As Integer = DaqCfg1.ScanCount
+        Dim ADChanCount As Integer = DaqCfg1.ADChanCount
+        If DaqCfg1.IsDaqEnable Then
+
+            'Always creat *.dat file
+            StartDAQ(card2005, ScanIntrv, ScanCount, ADChanCount, "DAT", DaqCfg1.fileName)
+
+        End If
+
+        'intial preCount after start 2005 card
+        QueryPerformanceCounter(preCount)
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'pci-8158
+        LstrVel = LinearVelModeCfg1.LStrVel
+        LmaxVel = LinearVelModeCfg1.LMaxVel
+        LTacc = LinearVelModeCfg1.LTacc
+        LTdec = LinearVelModeCfg1.LTdec
+        LTUnif = LinearVelModeCfg1.LTunif
+        LTdelay = LinearVelModeCfg1.LDelayTime
+        RstrVel = RotatePosModeCfg1.RStrVel
+        RmaxVel = RotatePosModeCfg1.RMaxVel
+        RTacc = RotatePosModeCfg1.RTacc
+        RTdec = RotatePosModeCfg1.RTdec
+        RDist = RotatePosModeCfg1.RDist
+
+        If LinearVelModeCfg1.IsLinearVelMode Then
+            'Linear Motion mode
+            axis = 0
+        End If
+
+        If RotatePosModeCfg1.IsRotatePosMode Then
+            'Rotation Motion mode
+            axis = 1
+        End If
+
+        If LinearVelModeCfg1.IsLinearVelMode And RotatePosModeCfg1.IsRotatePosMode Then
+            'both axis select , mixed motion mode
+            axis = 2
+        End If
+
+        motionMode = M_MODE.VELOCITY
+        If LmaxVel > 0 Then
+            motionDirect = True
+        Else
+            motionDirect = False
+        End If
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'set motion info to txt
+
+        'Dim motionInfo As String
+        'motionInfo = "AccTime:  " & txtAccTime.Text & " S" & vbCrLf &
+        '    "MaxSpeed:  " & txtMaxSpeedP.Text & " MM/S" & vbCrLf &
+        '    "UniformTime:  " & txtUnifTime.Text & " MM"
+        'If chkDaq2005Enable.Checked Then
+        '    motionInfo = motionInfo & vbCrLf &
+        '        "Scan Intervals :   " & cboScanInterval.Text & vbCrLf &
+        '        "Data Size      :   " & CboDataSize.Text
+        'End If
+        'WriteInfoToTxt(motionInfo)
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+        'avoid invoke method
+        aveNum = DaqCfg1.aveNum
+        expInfo = DaqCfg1.expInfo
+        fileName = DaqCfg1.fileName
+        xlsHeader = DaqCfg1.xlsHeader
+        MotionThread = New System.Threading.Thread(AddressOf MotionStart)
+        'set threading apartment state as sta mode , so can handle the xlsx file for the data to store
+        MotionThread.SetApartmentState(Threading.ApartmentState.STA)
+        MotionThread.Start()
+
+    End Sub
+
+    Private Sub MotionStart()
+        sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
+        sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
+        motionStatus = True         'Begin to move , and bengin to acquire decode data
+
+        Dim FeedbackThread As New System.Threading.Thread(AddressOf GetFeedback)
+        FeedbackThread.Start()
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'pci-8158
+        'Before motion begin , it is will be keep null status for some seconds. 
+        'Before motion begin , it is will be keep null status for 1 second. detail at "修改需求文档20131206.docx"
+        System.Threading.Thread.Sleep(1000)
+        Dim LdelayTime As Double = LTdelay * 1000
+        ' VELOCITY MOTION MODE ONLY FIT AXIS
+        Select Case axis
+            Case 0
+                Start_1Axis_tv_move(axis, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
+            Case 1
+                Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
+            Case 2
+                'rotate first, then linear motion
+                Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
+                System.Threading.Thread.Sleep(LTdelay)
+                Start_1Axis_tv_move(0, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
+
+        End Select
+
+        B_8158_int_control(card8158, 0)
+
+        'waitting for axis stop motion
+        'System.Threading.Thread.Sleep(1000)
+        While Not isStopMotion()
+            System.Threading.Thread.Sleep(50)
+        End While
+
+        motionStatus = False        'Move is over , and stop to acquire decode data
+
+        'clear daq-2005 card async buffer
+        ClearDaq2005Async(card2005)
+
+        If DaqCfg1.IsDaqEnable And DaqCfg1.scanFileFormatMode = "XLS" Then
+            'SAVE DATA AND SOME INFO
+
+            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart)
+        End If
+    End Sub
+
+    Private Sub GetFeedback()
+        While motionStatus
+            Dim prepreCount As Double = preCount
+
+            Dim curspd As Double = CurSpeed(0)
+            Dim curFeedSpd = FeedbackSpeed2(preCount, prePos, CPUfreq)
+
+            If motionDirect = False Then
+                curspd = -CurSpeed(0)
+            End If
+            'write motion decode data
+            sw.WriteLine(TDuration.ToString("0.000000") & vbTab & curspd & vbTab & curFeedSpd)
+            TDuration = TDuration + (preCount - prepreCount) / CPUfreq
+        End While
+
+        sw.Flush()
+        sw.Close()
+        sw = Nothing
+        TDuration = 0
+    End Sub
+
+    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+        If axis = 2 Then
+            B_8158_stop_move_all(0)
+        Else
+            'single axis motion stop
+            B_8158_emg_stop(axis)
+        End If
+        'Update Motion Status
+        motionStatus = False
+        'debug code
+        'Timer1.Enabled = False
+    End Sub
+
+    Private Sub Release()
+        btnStop_Click(Nothing, Nothing)
+
+        If Not IsNothing(MotionThread) Then
+            Try
+                MotionThread.Abort()
+            Catch ex As Exception
+
+            End Try
+        End If
+
+        B_8158_close()
+        D2K_Release_Card(card2005)
+    End Sub
+
+    Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
+        Release()
+        Me.ParentForm.Close()
+    End Sub
+
+    Private Sub tm_Tick(sender As Object, e As EventArgs) Handles tm.Tick
+        LinearChart1.plotCurve(10, 50)
     End Sub
 End Class

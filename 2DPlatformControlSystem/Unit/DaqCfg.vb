@@ -165,4 +165,30 @@
                 "/Scan interval(" & cboScanInterval.Text & ")"
         End If
     End Sub
+
+    Private Sub rdDAT_CheckedChanged(sender As Object, e As EventArgs) Handles rdDAT.CheckedChanged
+        If rdDAT.Checked Then
+            cboNumOfAve.Enabled = False
+            ChkCH_1.Enabled = False
+            ChkCH_2.Enabled = False
+            ChkCH_3.Enabled = False
+            ChkCH_4.Enabled = False
+            txtxlsHeaderCH_1.Enabled = False
+            txtxlsHeaderCH_2.Enabled = False
+            txtxlsHeaderCH_3.Enabled = False
+            txtxlsHeaderCH_4.Enabled = False
+            txtExpCondition.Enabled = False
+        Else
+            cboNumOfAve.Enabled = True
+            ChkCH_1.Enabled = True
+            ChkCH_2.Enabled = True
+            ChkCH_3.Enabled = True
+            ChkCH_4.Enabled = True
+            txtxlsHeaderCH_1.Enabled = True
+            txtxlsHeaderCH_2.Enabled = True
+            txtxlsHeaderCH_3.Enabled = True
+            txtxlsHeaderCH_4.Enabled = True
+            txtExpCondition.Enabled = True
+        End If
+    End Sub
 End Class
