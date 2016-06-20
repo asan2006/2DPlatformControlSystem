@@ -14,7 +14,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x86</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineDebug>true</DefineDebug>
@@ -49,6 +49,10 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel2013">
+      <HintPath>.\Excel2013.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -73,6 +77,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Lib\AppInfo.vb" />
+    <Compile Include="Lib\D2kDask.vb" />
+    <Compile Include="Lib\pci_8158.vb" />
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -80,6 +86,9 @@
       <DependentUpon>MainForm.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ModuleFunciton\Module_Daq2005PostTrgNoneDlbBufAsynContAI.vb" />
+    <Compile Include="ModuleFunciton\Module_OtherFun.vb" />
+    <Compile Include="ModuleFunciton\Module_Pci8158TrMoveFor2Axis.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -95,16 +104,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Unit\DaqAcqCfg.Designer.vb">
-      <DependentUpon>DaqAcqCfg.vb</DependentUpon>
+    <Compile Include="Panel\TrdControlPanel.Designer.vb">
+      <DependentUpon>TrdControlPanel.vb</DependentUpon>
     </Compile>
-    <Compile Include="Unit\DaqAcqCfg.vb">
+    <Compile Include="Panel\TrdControlPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\DaqCfg.Designer.vb">
+      <DependentUpon>DaqCfg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\DaqCfg.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Unit\LinearVelModeCfg.Designer.vb">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>
     </Compile>
     <Compile Include="Unit\LinearVelModeCfg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\LoadCfgFile.Designer.vb">
+      <DependentUpon>LoadCfgFile.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\LoadCfgFile.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Unit\RotatePosModeCfg.Designer.vb">
@@ -124,17 +145,26 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Unit\DaqAcqCfg.resx">
-      <DependentUpon>DaqAcqCfg.vb</DependentUpon>
+    <EmbeddedResource Include="Panel\TrdControlPanel.resx">
+      <DependentUpon>TrdControlPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\DaqCfg.resx">
+      <DependentUpon>DaqCfg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearVelModeCfg.resx">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\LoadCfgFile.resx">
+      <DependentUpon>LoadCfgFile.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\RotatePosModeCfg.resx">
       <DependentUpon>RotatePosModeCfg.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Configure\TrdCfgDemo.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -146,6 +176,18 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

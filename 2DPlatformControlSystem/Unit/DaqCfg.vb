@@ -1,4 +1,4 @@
-﻿Public Class DaqAcqCfg
+﻿Public Class DaqCfg
 
     Public Property IsDaqEnable As Boolean
         Get
@@ -130,7 +130,7 @@
         End Get
     End Property
 
-    Public WriteOnly Property chartOption As Boolean()
+    Public WriteOnly Property setChartOption As Boolean()
         Set(value As Boolean())
             ChkCH_1.Checked = value(0)
             ChkCH_2.Checked = value(1)
@@ -138,6 +138,8 @@
             ChkCH_4.Checked = value(3)
         End Set
     End Property
+
+    'Public appPath As String
 
     Sub New()
 
@@ -149,6 +151,8 @@
         ChkCH_2.Tag = "B:B"
         ChkCH_3.Tag = "C:C"
         ChkCH_4.Tag = "D:D"
+
+        txtFileToSave.Text = Application.StartupPath + "\ADLinkDaq"
     End Sub
 
 

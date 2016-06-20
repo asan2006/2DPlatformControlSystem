@@ -24,11 +24,11 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.tbAbout = New System.Windows.Forms.TabPage()
         Me.txtAbout = New System.Windows.Forms.TextBox()
-        Me.DaqAcqCfg1 = New _2DPlatformControlSystem.DaqAcqCfg()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
         Me.TabControl1.SuspendLayout()
         Me.tbTrdControl.SuspendLayout()
         Me.tbAbout.SuspendLayout()
@@ -43,21 +43,30 @@ Partial Class MainForm
         Me.TabControl1.Multiline = True
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(766, 515)
+        Me.TabControl1.Size = New System.Drawing.Size(928, 604)
         Me.TabControl1.TabIndex = 1
         '
         'tbTrdControl
         '
-        Me.tbTrdControl.Controls.Add(Me.DaqAcqCfg1)
+        Me.tbTrdControl.Controls.Add(Me.TrdControlPanel1)
         Me.tbTrdControl.Controls.Add(Me.Button2)
         Me.tbTrdControl.Controls.Add(Me.Button1)
         Me.tbTrdControl.Location = New System.Drawing.Point(4, 22)
         Me.tbTrdControl.Name = "tbTrdControl"
         Me.tbTrdControl.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbTrdControl.Size = New System.Drawing.Size(758, 489)
+        Me.tbTrdControl.Size = New System.Drawing.Size(920, 578)
         Me.tbTrdControl.TabIndex = 0
         Me.tbTrdControl.Text = "TrdControl"
         Me.tbTrdControl.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(280, 324)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 1
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Button1
         '
@@ -74,7 +83,7 @@ Partial Class MainForm
         Me.tbAbout.Location = New System.Drawing.Point(4, 22)
         Me.tbAbout.Name = "tbAbout"
         Me.tbAbout.Padding = New System.Windows.Forms.Padding(3)
-        Me.tbAbout.Size = New System.Drawing.Size(758, 489)
+        Me.tbAbout.Size = New System.Drawing.Size(942, 534)
         Me.tbAbout.TabIndex = 1
         Me.tbAbout.Text = "About"
         Me.tbAbout.UseVisualStyleBackColor = True
@@ -85,37 +94,21 @@ Partial Class MainForm
         Me.txtAbout.Location = New System.Drawing.Point(3, 3)
         Me.txtAbout.Multiline = True
         Me.txtAbout.Name = "txtAbout"
-        Me.txtAbout.Size = New System.Drawing.Size(752, 483)
+        Me.txtAbout.Size = New System.Drawing.Size(936, 528)
         Me.txtAbout.TabIndex = 0
         '
-        'DaqAcqCfg1
+        'TrdControlPanel1
         '
-        Me.DaqAcqCfg1.ADChanCount = 4
-        Me.DaqAcqCfg1.aveNum = 1
-        Me.DaqAcqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""W1"")"
-        Me.DaqAcqCfg1.IsDaqEnable = False
-        Me.DaqAcqCfg1.Location = New System.Drawing.Point(8, 6)
-        Me.DaqAcqCfg1.Name = "DaqAcqCfg1"
-        Me.DaqAcqCfg1.ScanCount = 100000
-        Me.DaqAcqCfg1.scanFileFormatMode = "XLS"
-        Me.DaqAcqCfg1.ScanIntrv = 200
-        Me.DaqAcqCfg1.Size = New System.Drawing.Size(511, 225)
-        Me.DaqAcqCfg1.TabIndex = 2
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(280, 324)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 1
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel1.Name = "TrdControlPanel1"
+        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 519)
+        Me.TrdControlPanel1.TabIndex = 2
         '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(766, 515)
+        Me.ClientSize = New System.Drawing.Size(928, 604)
         Me.Controls.Add(Me.TabControl1)
         Me.Name = "MainForm"
         Me.Text = "2DPlatformControlSystem"
@@ -132,6 +125,6 @@ Partial Class MainForm
     Friend WithEvents tbAbout As TabPage
     Friend WithEvents txtAbout As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents DaqAcqCfg1 As DaqAcqCfg
     Friend WithEvents Button2 As Button
+    Friend WithEvents TrdControlPanel1 As TrdControlPanel
 End Class

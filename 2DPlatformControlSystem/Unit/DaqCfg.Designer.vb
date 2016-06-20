@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class DaqAcqCfg
+Partial Class DaqCfg
     Inherits System.Windows.Forms.UserControl
 
     'UserControl 重写释放以清理组件列表。
