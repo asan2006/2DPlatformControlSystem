@@ -224,10 +224,9 @@
                 Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
             Case 2
                 'rotate first, then linear motion
-                Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
+                Start_1Axis_tr_move(1, RDist, RstrVel, RmaxVel, RTacc, RTdec)
                 System.Threading.Thread.Sleep(LTdelay)
                 Start_1Axis_tv_move(0, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
-
         End Select
 
         B_8158_int_control(card8158, 0)
