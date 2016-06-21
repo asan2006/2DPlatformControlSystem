@@ -6,6 +6,29 @@
     ''' 
 
     Public InBuf() As UShort
+    ''' <summary>
+    ''' initial DAQ2005 card
+    ''' </summary>
+    Sub initial_DAQ2005()
+        'set daq 2005 card register
+        Dim card2005 As Short = 0
+        Dim result As Short = D2K_Register_Card(DAQ_2005, card2005)
+        If result < 0 Then
+            Select Case result
+                Case ErrorTooManyCardRegistered
+                    MsgBox("ErrorTooManyCardRegistered")
+                Case ErrorUnknownCardType
+                    MsgBox("ErrorUnknownCardType")
+                Case ErrorOpenDriverFailed
+                    MsgBox("ErrorOpenDriverFailed")
+                Case ErrorOpenEventFailed
+                    MsgBox("ErrorOpenEventFailed")
+                Case Else
+                    MsgBox("Registe failed , but unknown reasons!")
+                    Exit Sub
+            End Select
+        End If
+    End Sub
 
     Sub StartDAQ(ByVal cardNum As Short, ByVal ScanIntrv As Integer, ByVal ScanCount As Integer, ByVal ADChanCount As Integer, ByVal scanFileFormatMode As String, Optional ByVal filename As String = Nothing)
         Dim result As Integer

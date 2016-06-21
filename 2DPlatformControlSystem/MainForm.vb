@@ -9,6 +9,10 @@
         Me.Text = AppInfo.AssemblyName
         TabControl1.SelectedTab = tbAbout
 
+        'intial 8158 and 2005 card
+        initial_PCI8158()
+        initial_DAQ2005()
+
     End Sub
 
     Private Sub TabControl1_Selected(sender As Object, e As TabControlEventArgs) Handles TabControl1.Selected

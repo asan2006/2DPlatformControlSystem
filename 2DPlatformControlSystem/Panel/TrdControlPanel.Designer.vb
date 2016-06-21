@@ -24,6 +24,8 @@ Partial Class TrdControlPanel
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
+        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.btnMotion = New System.Windows.Forms.Button()
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
@@ -31,8 +33,6 @@ Partial Class TrdControlPanel
         Me.LinearChart1 = New _2DPlatformControlSystem.LinearChart()
         Me.DaqCfg1 = New _2DPlatformControlSystem.DaqCfg()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
-        Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
-        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,67 +47,6 @@ Partial Class TrdControlPanel
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "CONFIGURE"
-        '
-        'btnMotion
-        '
-        Me.btnMotion.Location = New System.Drawing.Point(47, 465)
-        Me.btnMotion.Name = "btnMotion"
-        Me.btnMotion.Size = New System.Drawing.Size(121, 43)
-        Me.btnMotion.TabIndex = 4
-        Me.btnMotion.Text = "Motion"
-        Me.btnMotion.UseVisualStyleBackColor = True
-        '
-        'btnStop
-        '
-        Me.btnStop.Location = New System.Drawing.Point(405, 465)
-        Me.btnStop.Name = "btnStop"
-        Me.btnStop.Size = New System.Drawing.Size(121, 43)
-        Me.btnStop.TabIndex = 4
-        Me.btnStop.Text = "Stop"
-        Me.btnStop.UseVisualStyleBackColor = True
-        '
-        'btnQuit
-        '
-        Me.btnQuit.Location = New System.Drawing.Point(763, 465)
-        Me.btnQuit.Name = "btnQuit"
-        Me.btnQuit.Size = New System.Drawing.Size(121, 43)
-        Me.btnQuit.TabIndex = 4
-        Me.btnQuit.Text = "Quit"
-        Me.btnQuit.UseVisualStyleBackColor = True
-        '
-        'tm
-        '
-        Me.tm.Interval = 10
-        '
-        'LinearChart1
-        '
-        Me.LinearChart1.Location = New System.Drawing.Point(3, 229)
-        Me.LinearChart1.Name = "LinearChart1"
-        Me.LinearChart1.Size = New System.Drawing.Size(397, 208)
-        Me.LinearChart1.TabIndex = 7
-        '
-        'DaqCfg1
-        '
-        Me.DaqCfg1.ADChanCount = 4
-        Me.DaqCfg1.aveNum = 1
-        Me.DaqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""W1"")"
-        Me.DaqCfg1.fileName = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\ADLinkDaq"
-        Me.DaqCfg1.IsDaqEnable = False
-        Me.DaqCfg1.Location = New System.Drawing.Point(405, 3)
-        Me.DaqCfg1.Name = "DaqCfg1"
-        Me.DaqCfg1.ScanCount = 100000
-        Me.DaqCfg1.scanFileFormatMode = "XLS"
-        Me.DaqCfg1.ScanIntrv = 200
-        Me.DaqCfg1.Size = New System.Drawing.Size(511, 220)
-        Me.DaqCfg1.TabIndex = 6
-        Me.DaqCfg1.xlsHeader = New String() {"CH_1", "CH_2", "CH_3", "CH_4"}
-        '
-        'LoadCfgFile1
-        '
-        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 229)
-        Me.LoadCfgFile1.Name = "LoadCfgFile1"
-        Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 39)
-        Me.LoadCfgFile1.TabIndex = 5
         '
         'LinearVelModeCfg1
         '
@@ -138,6 +77,67 @@ Partial Class TrdControlPanel
         Me.RotatePosModeCfg1.RTdec = 0.1R
         Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 182)
         Me.RotatePosModeCfg1.TabIndex = 1
+        '
+        'btnMotion
+        '
+        Me.btnMotion.Location = New System.Drawing.Point(47, 465)
+        Me.btnMotion.Name = "btnMotion"
+        Me.btnMotion.Size = New System.Drawing.Size(121, 43)
+        Me.btnMotion.TabIndex = 4
+        Me.btnMotion.Text = "Motion"
+        Me.btnMotion.UseVisualStyleBackColor = True
+        '
+        'btnStop
+        '
+        Me.btnStop.Location = New System.Drawing.Point(405, 465)
+        Me.btnStop.Name = "btnStop"
+        Me.btnStop.Size = New System.Drawing.Size(121, 43)
+        Me.btnStop.TabIndex = 4
+        Me.btnStop.Text = "Stop"
+        Me.btnStop.UseVisualStyleBackColor = True
+        '
+        'btnQuit
+        '
+        Me.btnQuit.Location = New System.Drawing.Point(763, 465)
+        Me.btnQuit.Name = "btnQuit"
+        Me.btnQuit.Size = New System.Drawing.Size(121, 43)
+        Me.btnQuit.TabIndex = 4
+        Me.btnQuit.Text = "Quit"
+        Me.btnQuit.UseVisualStyleBackColor = True
+        '
+        'tm
+        '
+        Me.tm.Interval = 50
+        '
+        'LinearChart1
+        '
+        Me.LinearChart1.Location = New System.Drawing.Point(3, 229)
+        Me.LinearChart1.Name = "LinearChart1"
+        Me.LinearChart1.Size = New System.Drawing.Size(397, 208)
+        Me.LinearChart1.TabIndex = 7
+        '
+        'DaqCfg1
+        '
+        Me.DaqCfg1.ADChanCount = 4
+        Me.DaqCfg1.aveNum = 1
+        Me.DaqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""W1"")"
+        Me.DaqCfg1.fileName = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\ADLinkDaq"
+        Me.DaqCfg1.IsDaqEnable = False
+        Me.DaqCfg1.Location = New System.Drawing.Point(405, 3)
+        Me.DaqCfg1.Name = "DaqCfg1"
+        Me.DaqCfg1.ScanCount = 100000
+        Me.DaqCfg1.scanFileFormatMode = "XLS"
+        Me.DaqCfg1.ScanIntrv = 200
+        Me.DaqCfg1.Size = New System.Drawing.Size(511, 220)
+        Me.DaqCfg1.TabIndex = 6
+        Me.DaqCfg1.xlsHeader = New String() {"CH_1", "CH_2", "CH_3", "CH_4"}
+        '
+        'LoadCfgFile1
+        '
+        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 229)
+        Me.LoadCfgFile1.Name = "LoadCfgFile1"
+        Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 39)
+        Me.LoadCfgFile1.TabIndex = 5
         '
         'TrdControlPanel
         '

@@ -12,7 +12,33 @@
         VELOCITY
         POSITION
     End Enum
+    ''' <summary>
+    ''' initial 8158 card
+    ''' </summary>
+    Sub initial_PCI8158()
+        Dim card8158 As Short = 0
+        Dim result As Short = B_8158_initial(card8158, 0)
+        If result <> 0 Then
+            MsgBox("initial 8158 card failed")
+            Exit Sub
+        End If
+        'set axis num 0
+        B_8158_set_pls_outmode(0, 4)
+        B_8158_set_move_ratio(0, 1)
+        B_8158_set_servo(0, 1)
+        'configure the input mode of external feedback pulse
+        B_8158_set_pls_iptmode(0, 2, 0)
+        'set counter input source
+        B_8158_set_feedback_src(0, 0)
 
+        'set axis num 1
+        'set palse out mode
+        B_8158_set_pls_outmode(1, 0)
+        B_8158_set_alm(1, 1, 0)
+        B_8158_set_inp(1, 0, 1)
+        B_8158_set_move_ratio(1, 0)
+
+    End Sub
     ''' <summary>
     ''' only for e-teknet 2D platform motion control
     ''' </summary>
