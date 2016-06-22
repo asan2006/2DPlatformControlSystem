@@ -307,14 +307,13 @@
         btnMotion.Enabled = isStopMotion() And
             (LinearVelModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
 
-        Dim prepreTime As Double = preTime
-
         Dim curspd As Double = CurSpeed(0)
         Dim curFeedSpd = FeedbackSpeed(preTime, prePosT)
 
         If motionDirect = False Then
             curspd = -CurSpeed(0)
         End If
+
         LinearChart1.plotCurve(curspd, curFeedSpd)
 
         LinearVelModeCfg1.LCurSpeed = CurSpeed(0)
