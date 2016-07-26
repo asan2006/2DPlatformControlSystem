@@ -9,7 +9,7 @@
 TrdControl Function:
 1. Linear motion as Velocity Mode;
 2. Rotate motion as Positon Mode;
-3. Using for iTest for sensor.
+3. Using for iTest, aTest, cTest for sensor.
 "
     End Sub
 End Class

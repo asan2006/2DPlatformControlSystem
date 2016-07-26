@@ -1,4 +1,5 @@
 ﻿Module Module_Pci8158TrMoveFor2Axis
+    Const card8158 As Short = 0
 
     ' winmm.dll is better than dateTime in the donet framwork
     Private Declare Function timeGetTime Lib "winmm.dll" Alias "timeGetTime" () As Long
@@ -89,8 +90,10 @@
         End Select
         B_8158_tv_move(axisNo, strVel, maxVel, Tacc)
         B_8158_set_motion_int_factor(axisNo, 0)     'waitting for inturrupt
+        B_8158_int_control(card8158, 0)
         'sleep unit as millisecond
         System.Threading.Thread.Sleep(slpTime)
+
         'stop axis with decelerate instead of immediately
         'WARNING: when Tdec is 1 seconde, the decelerate time actully is 0.5 seconde, half if the special value , 
         'I have not get this reason, if necssary ,connect supplier to get the answer .

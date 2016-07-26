@@ -229,8 +229,6 @@
                 Start_1Axis_tv_move(0, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
         End Select
 
-        B_8158_int_control(card8158, 0)
-
         'waitting for axis stop motion
         'System.Threading.Thread.Sleep(1000)
         While Not isStopMotion()
