@@ -53,14 +53,14 @@
         ' 在 InitializeComponent() 调用之后添加任何初始化。
 
         DaqCfg1.fileName = Application.StartupPath + "\ADLinkDaq"
-        LoadCfgFile1.cfgFilePath = Application.StartupPath + "\Configure\"
+        'LoadCfgFile1.cfgFilePath = Application.StartupPath + "\Configure\"
     End Sub
 
     Private Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
         'configure change event occured!!!
         Try
 
-            Dim fullFileName As String = LoadCfgFile1.cfgFilePath + fileName
+            Dim fullFileName As String = LoadCfgFile1.cfgFilePath + "\" + fileName
             Dim xlApp As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
             Dim xlBook As Microsoft.Office.Interop.Excel.Workbook = xlApp.Workbooks.Open(fullFileName)
             Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets(1)

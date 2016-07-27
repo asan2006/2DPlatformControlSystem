@@ -9,12 +9,15 @@ Public Class LoadCfgFile
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
         cboCfgList.SelectedIndex = 0
-
+        txtCfgPath.Text = Application.StartupPath + "\Configure\"
+        fbd1.SelectedPath = Application.StartupPath
     End Sub
     Private Sub btnLoadCfg_Click(sender As Object, e As EventArgs) Handles btnLoadCfg.Click
         If cboCfgList.Text = strCboIndex0 Then
             cboCfgList.Items.Clear()
             cboCfgList.Items.Add(strCboIndex0)
+
+            cfgFilePath = txtCfgPath.Text
 
             For Each f As String In Directory.GetFiles(cfgFilePath)
                 If Path.GetExtension(f) = ".xls" Or Path.GetExtension(f) = ".xlsx" Then
@@ -34,4 +37,24 @@ Public Class LoadCfgFile
     End Sub
 
     Public Event CfgSet(ByVal fileName As String)
+
+    Private Sub btnSetPath_Click(sender As Object, e As EventArgs) Handles btnSetPath.Click
+        If fbd1.ShowDialog = DialogResult.OK Then
+            txtCfgPath.Text = fbd1.SelectedPath
+
+            cfgFilePath = txtCfgPath.Text
+
+            cboCfgList.Items.Clear()
+            cboCfgList.Items.Add(strCboIndex0)
+
+            For Each f As String In Directory.GetFiles(cfgFilePath)
+                If Path.GetExtension(f) = ".xls" Or Path.GetExtension(f) = ".xlsx" Then
+                    'congifure file save as xls or xlsx
+                    'add in the file list
+                    cboCfgList.Items.Add(Path.GetFileName(f))
+                End If
+            Next
+            cboCfgList.SelectedIndex = 0
+        End If
+    End Sub
 End Class
