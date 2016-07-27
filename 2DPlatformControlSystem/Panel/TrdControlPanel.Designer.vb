@@ -30,9 +30,9 @@ Partial Class TrdControlPanel
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
         Me.tm = New System.Windows.Forms.Timer(Me.components)
-        Me.LinearChart1 = New _2DPlatformControlSystem.LinearChart()
         Me.DaqCfg1 = New _2DPlatformControlSystem.DaqCfg()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
+        Me.PositionStatus1 = New _2DPlatformControlSystem.PositionStatus()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -109,13 +109,6 @@ Partial Class TrdControlPanel
         '
         Me.tm.Interval = 50
         '
-        'LinearChart1
-        '
-        Me.LinearChart1.Location = New System.Drawing.Point(3, 229)
-        Me.LinearChart1.Name = "LinearChart1"
-        Me.LinearChart1.Size = New System.Drawing.Size(397, 208)
-        Me.LinearChart1.TabIndex = 7
-        '
         'DaqCfg1
         '
         Me.DaqCfg1.ADChanCount = 4
@@ -139,11 +132,18 @@ Partial Class TrdControlPanel
         Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 39)
         Me.LoadCfgFile1.TabIndex = 5
         '
+        'PositionStatus1
+        '
+        Me.PositionStatus1.Location = New System.Drawing.Point(3, 229)
+        Me.PositionStatus1.Name = "PositionStatus1"
+        Me.PositionStatus1.Size = New System.Drawing.Size(397, 203)
+        Me.PositionStatus1.TabIndex = 7
+        '
         'TrdControlPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.Controls.Add(Me.LinearChart1)
+        Me.Controls.Add(Me.PositionStatus1)
         Me.Controls.Add(Me.DaqCfg1)
         Me.Controls.Add(Me.LoadCfgFile1)
         Me.Controls.Add(Me.btnQuit)
@@ -165,6 +165,6 @@ Partial Class TrdControlPanel
     Friend WithEvents btnQuit As Button
     Friend WithEvents LoadCfgFile1 As LoadCfgFile
     Friend WithEvents DaqCfg1 As DaqCfg
-    Friend WithEvents LinearChart1 As LinearChart
     Friend WithEvents tm As Timer
+    Friend WithEvents PositionStatus1 As PositionStatus
 End Class

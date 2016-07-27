@@ -144,6 +144,12 @@
     <Compile Include="Unit\LoadCfgFile.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Unit\PositionStatus.Designer.vb">
+      <DependentUpon>PositionStatus.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\PositionStatus.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Unit\RotatePosModeCfg.Designer.vb">
       <DependentUpon>RotatePosModeCfg.vb</DependentUpon>
     </Compile>
@@ -178,6 +184,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LoadCfgFile.resx">
       <DependentUpon>LoadCfgFile.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\PositionStatus.resx">
+      <DependentUpon>PositionStatus.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\RotatePosModeCfg.resx">
       <DependentUpon>RotatePosModeCfg.vb</DependentUpon>

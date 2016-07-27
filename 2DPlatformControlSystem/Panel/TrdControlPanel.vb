@@ -306,15 +306,36 @@
             (LinearVelModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
 
         Dim curspd As Double = CurSpeed(0)
-        Dim curFeedSpd = FeedbackSpeed(preTime, prePosT)
+        'Dim curFeedSpd = FeedbackSpeed(preTime, prePosT)
 
         If motionDirect = False Then
             curspd = -CurSpeed(0)
         End If
 
-        LinearChart1.plotCurve(curspd, curFeedSpd)
+        'LinearChart1.plotCurve(curspd, curFeedSpd)
 
         LinearVelModeCfg1.LCurSpeed = CurSpeed(0)
         RotatePosModeCfg1.RCurSpeed = CurSpeed(1)
+
+        PositionStatus1.LPosStatus = CurLPos()
+        PositionStatus1.RPosStatus = CurRPos()
+
     End Sub
+
+    Private Sub PositionStatus1_LPosReset(sender As Object, e As EventArgs) Handles PositionStatus1.LPosReset
+        ResetLPos()
+    End Sub
+
+    Private Sub PositionStatus1_RPosReset(sender As Object, e As EventArgs) Handles PositionStatus1.RPosReset
+        ResetRPos()
+    End Sub
+
+    Private Sub PositionStatus1_LPosGo(sender As Object, e As EventArgs) Handles PositionStatus1.LPosGo
+        Start_1Axis_tr_move(1, PositionStatus1.LPosSet, 0, 30, 0.1, 0.1)
+    End Sub
+
+    Private Sub PositionStatus1_RPosGo(sender As Object, e As EventArgs) Handles PositionStatus1.RPosGo
+        Start_1Axis_tr_move(1, PositionStatus1.RPosSet, 0, 30, 0.1, 0.1)
+    End Sub
+
 End Class

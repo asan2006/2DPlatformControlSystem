@@ -149,6 +149,26 @@
         Return bolStop
     End Function
 
+    Function CurLPos() As Double
+        Dim pos As Double
+        B_8158_get_position(0, pos)
+        Return Pluse2MM(pos)
+    End Function
+
+    Function CurRPos() As Double
+        Dim pos As Double
+        B_8158_get_position(1, pos)
+        Return Pluse2deg(pos)
+    End Function
+
+    Sub ResetLPos()
+        B_8158_set_position(0, 0)
+    End Sub
+
+    Sub ResetRPos()
+        B_8158_set_position(1, 0)
+    End Sub
+
     Function CurSpeed() As Double()
         Dim speed(1) As Double
         B_8158_get_current_speed(0, speed(0))
@@ -167,6 +187,11 @@
     Function MM2Pluse(ByVal mm As Double) As Double
         Dim pluse As Double = mm * 1000
         Return pluse
+    End Function
+
+    Function Pluse2deg(ByVal pluse As Double) As Double
+        Dim deg As Double = pluse / 18000 * 360
+        Return deg
     End Function
     Function FeedbackSpeed(ByRef preTime As Long, ByRef prePos As Double) As Double
         Dim nowTime As Long = timeGetTime
