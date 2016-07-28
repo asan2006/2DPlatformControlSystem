@@ -331,7 +331,7 @@
     End Sub
 
     Private Sub PositionStatus1_LPosGo(sender As Object, e As EventArgs) Handles PositionStatus1.LPosGo
-        Start_1Axis_tr_move(1, PositionStatus1.LPosSet, 0, 30, 0.1, 0.1)
+        Start_1Axis_tr_move(0, PositionStatus1.LPosSet, 0, 30, 0.1, 0.1)
     End Sub
 
     Private Sub PositionStatus1_RPosGo(sender As Object, e As EventArgs) Handles PositionStatus1.RPosGo

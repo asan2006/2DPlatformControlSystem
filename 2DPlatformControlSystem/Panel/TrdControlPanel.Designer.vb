@@ -24,15 +24,15 @@ Partial Class TrdControlPanel
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
-        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.btnMotion = New System.Windows.Forms.Button()
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
         Me.tm = New System.Windows.Forms.Timer(Me.components)
+        Me.PositionStatus1 = New _2DPlatformControlSystem.PositionStatus()
         Me.DaqCfg1 = New _2DPlatformControlSystem.DaqCfg()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
-        Me.PositionStatus1 = New _2DPlatformControlSystem.PositionStatus()
+        Me.LinearVelModeCfg1 = New _2DPlatformControlSystem.LinearVelModeCfg()
+        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,36 +47,6 @@ Partial Class TrdControlPanel
         Me.GroupBox1.TabIndex = 3
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "CONFIGURE"
-        '
-        'LinearVelModeCfg1
-        '
-        Me.LinearVelModeCfg1.IsLinearVelMode = False
-        Me.LinearVelModeCfg1.LCurSpeed = 0R
-        Me.LinearVelModeCfg1.LDelayTime = 1.0R
-        Me.LinearVelModeCfg1.LMaxVel = 60.0R
-        Me.LinearVelModeCfg1.Location = New System.Drawing.Point(6, 20)
-        Me.LinearVelModeCfg1.LStrVel = 0R
-        Me.LinearVelModeCfg1.LTacc = 0.1R
-        Me.LinearVelModeCfg1.LTdec = 0.2R
-        Me.LinearVelModeCfg1.LTunif = 0.2R
-        Me.LinearVelModeCfg1.Name = "LinearVelModeCfg1"
-        Me.LinearVelModeCfg1.Size = New System.Drawing.Size(183, 182)
-        Me.LinearVelModeCfg1.TabIndex = 0
-        '
-        'RotatePosModeCfg1
-        '
-        Me.RotatePosModeCfg1.IsRotatePosMode = False
-        Me.RotatePosModeCfg1.Location = New System.Drawing.Point(195, 20)
-        Me.RotatePosModeCfg1.Name = "RotatePosModeCfg1"
-        Me.RotatePosModeCfg1.RCurSpeed = 0R
-        Me.RotatePosModeCfg1.RDelayTime = 0R
-        Me.RotatePosModeCfg1.RDist = 60.0R
-        Me.RotatePosModeCfg1.RMaxVel = 60.0R
-        Me.RotatePosModeCfg1.RStrVel = 0R
-        Me.RotatePosModeCfg1.RTacc = 0.1R
-        Me.RotatePosModeCfg1.RTdec = 0.1R
-        Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 182)
-        Me.RotatePosModeCfg1.TabIndex = 1
         '
         'btnMotion
         '
@@ -109,6 +79,13 @@ Partial Class TrdControlPanel
         '
         Me.tm.Interval = 50
         '
+        'PositionStatus1
+        '
+        Me.PositionStatus1.Location = New System.Drawing.Point(3, 229)
+        Me.PositionStatus1.Name = "PositionStatus1"
+        Me.PositionStatus1.Size = New System.Drawing.Size(397, 203)
+        Me.PositionStatus1.TabIndex = 7
+        '
         'DaqCfg1
         '
         Me.DaqCfg1.ADChanCount = 4
@@ -132,12 +109,35 @@ Partial Class TrdControlPanel
         Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 73)
         Me.LoadCfgFile1.TabIndex = 5
         '
-        'PositionStatus1
+        'LinearVelModeCfg1
         '
-        Me.PositionStatus1.Location = New System.Drawing.Point(3, 229)
-        Me.PositionStatus1.Name = "PositionStatus1"
-        Me.PositionStatus1.Size = New System.Drawing.Size(397, 203)
-        Me.PositionStatus1.TabIndex = 7
+        Me.LinearVelModeCfg1.IsLinearVelMode = False
+        Me.LinearVelModeCfg1.LCurSpeed = 0R
+        Me.LinearVelModeCfg1.LDelayTime = 1.0R
+        Me.LinearVelModeCfg1.LMaxVel = 60.0R
+        Me.LinearVelModeCfg1.Location = New System.Drawing.Point(6, 20)
+        Me.LinearVelModeCfg1.LStrVel = 0R
+        Me.LinearVelModeCfg1.LTacc = 0.1R
+        Me.LinearVelModeCfg1.LTdec = 0.2R
+        Me.LinearVelModeCfg1.LTunif = 0.2R
+        Me.LinearVelModeCfg1.Name = "LinearVelModeCfg1"
+        Me.LinearVelModeCfg1.Size = New System.Drawing.Size(183, 182)
+        Me.LinearVelModeCfg1.TabIndex = 0
+        '
+        'RotatePosModeCfg1
+        '
+        Me.RotatePosModeCfg1.IsRotatePosMode = False
+        Me.RotatePosModeCfg1.Location = New System.Drawing.Point(195, 20)
+        Me.RotatePosModeCfg1.Name = "RotatePosModeCfg1"
+        Me.RotatePosModeCfg1.RCurSpeed = 0R
+        Me.RotatePosModeCfg1.RDelayTime = 0R
+        Me.RotatePosModeCfg1.RDist = 60.0R
+        Me.RotatePosModeCfg1.RMaxVel = 60.0R
+        Me.RotatePosModeCfg1.RStrVel = 0R
+        Me.RotatePosModeCfg1.RTacc = 0.1R
+        Me.RotatePosModeCfg1.RTdec = 0.1R
+        Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 182)
+        Me.RotatePosModeCfg1.TabIndex = 1
         '
         'TrdControlPanel
         '
