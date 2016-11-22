@@ -203,12 +203,18 @@
     End Sub
 
     Private Sub MotionStart()
-        sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
-        sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
+
         motionStatus = True         'Begin to move , and bengin to acquire decode data
 
-        Dim FeedbackThread As New System.Threading.Thread(AddressOf GetFeedback)
-        FeedbackThread.Start()
+        'if DAQ2005 enable, then acquire the feedback data
+        If DaqCfg1.Enabled Then
+            sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
+            sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
+
+            Dim FeedbackThread As New System.Threading.Thread(AddressOf GetFeedback)
+            FeedbackThread.Start()
+        End If
+
 
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         'pci-8158
