@@ -127,73 +127,73 @@
         End If
 
         ' command this if...else...endif section, and always creat the dat file
-        'If scanFileFormatMode = "DAT" Then
-        'here use scan data to dat file
-        result = D2K_AI_ContScanChannelsToFile(cardNum, ADChanCount - 1, BufId, filename, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
-        If result <> NoError Then
-            Select Case result
-                Case ErrorInvalidCardNumber
-                    MsgBox("ErrorInvalidCardNumber")
-                Case ErrorCardNotRegistered
-                    MsgBox("ErrorCardNotRegistered")
-                Case ErrorFuncNotSupport
-                    MsgBox("ErrorFuncNotSupport")
-                Case ErrorInvalidIoChannel
-                    MsgBox("ErrorInvalidIoChannel")
-                Case ErrorInvalidSampleRate
-                    MsgBox("ErrorInvalidSampleRate")
-                Case ErrorInvalidAdRange
-                    MsgBox("ErrorInvalidAdRange")
-                Case ErrorTransferCountTooLarge
-                    MsgBox("ErrorTransferCountTooLarge")
-                Case ErrorContIoNotAllowed
-                    MsgBox("ErrorContIoNotAllowed")
-                Case ErrorOpenFile
-                    MsgBox("ErrorOpenFile")
-                Case Else
-                    MsgBox("AI_ContScanChannelsToFile failed , but unknown reasons!")
-                    Exit Sub
-            End Select
-        End If
-        'Else
-        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        'here use scan data to memory
-        'result = D2K_AI_ContScanChannels(cardNum, ADChanCount - 1, BufId, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
-        'If result <> NoError Then
-        '    Select Case result
-        '        Case ErrorInvalidCardNumber
-        '            MsgBox("ErrorInvalidCardNumber")
-        '        Case ErrorCardNotRegistered
-        '            MsgBox("ErrorCardNotRegistered")
-        '        Case ErrorFuncNotSupport
-        '            MsgBox("ErrorFuncNotSupport")
-        '        Case ErrorInvalidIoChannel
-        '            MsgBox("ErrorInvalidIoChannel")
-        '        Case ErrorInvalidSampleRate
-        '            MsgBox("ErrorInvalidSampleRate")
-        '        Case ErrorInvalidAdRange
-        '            MsgBox("ErrorInvalidAdRange")
-        '        Case ErrorTransferCountTooLarge
-        '            MsgBox("ErrorTransferCountTooLarge")
-        '        Case ErrorContIoNotAllowed
-        '            MsgBox("ErrorContIoNotAllowed")
-        '        Case ErrorLastChannelNotZero
-        '            MsgBox("ErrorLastChannelNotZero")
-        '        Case ErrorDiffRangeNotSupport
-        '            MsgBox("ErrorDiffRangeNotSupport")
-        '        Case ErrorChannelNotDescending
-        '            MsgBox("ErrorChannelNotDescending")
-        '        Case ErrorChannelNotAscending
-        '            MsgBox("ErrorChannelNotAscending")
-        '        Case Else
-        '            MsgBox("AI_ContScanChannel failed , but unknown reasons!")
-        '            Exit Sub
-        '    End Select
-        'End If
-        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        If scanFileFormatMode = "DAT" Then
+            'here use scan data to dat file
+            result = D2K_AI_ContScanChannelsToFile(cardNum, ADChanCount - 1, BufId, filename, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
+            If result <> NoError Then
+                Select Case result
+                    Case ErrorInvalidCardNumber
+                        MsgBox("ErrorInvalidCardNumber")
+                    Case ErrorCardNotRegistered
+                        MsgBox("ErrorCardNotRegistered")
+                    Case ErrorFuncNotSupport
+                        MsgBox("ErrorFuncNotSupport")
+                    Case ErrorInvalidIoChannel
+                        MsgBox("ErrorInvalidIoChannel")
+                    Case ErrorInvalidSampleRate
+                        MsgBox("ErrorInvalidSampleRate")
+                    Case ErrorInvalidAdRange
+                        MsgBox("ErrorInvalidAdRange")
+                    Case ErrorTransferCountTooLarge
+                        MsgBox("ErrorTransferCountTooLarge")
+                    Case ErrorContIoNotAllowed
+                        MsgBox("ErrorContIoNotAllowed")
+                    Case ErrorOpenFile
+                        MsgBox("ErrorOpenFile")
+                    Case Else
+                        MsgBox("AI_ContScanChannelsToFile failed , but unknown reasons!")
+                        Exit Sub
+                End Select
+            End If
+        Else
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            'here use scan data to memory
+            result = D2K_AI_ContScanChannels(cardNum, ADChanCount - 1, BufId, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
+            If result <> NoError Then
+                Select Case result
+                    Case ErrorInvalidCardNumber
+                        MsgBox("ErrorInvalidCardNumber")
+                    Case ErrorCardNotRegistered
+                        MsgBox("ErrorCardNotRegistered")
+                    Case ErrorFuncNotSupport
+                        MsgBox("ErrorFuncNotSupport")
+                    Case ErrorInvalidIoChannel
+                        MsgBox("ErrorInvalidIoChannel")
+                    Case ErrorInvalidSampleRate
+                        MsgBox("ErrorInvalidSampleRate")
+                    Case ErrorInvalidAdRange
+                        MsgBox("ErrorInvalidAdRange")
+                    Case ErrorTransferCountTooLarge
+                        MsgBox("ErrorTransferCountTooLarge")
+                    Case ErrorContIoNotAllowed
+                        MsgBox("ErrorContIoNotAllowed")
+                    Case ErrorLastChannelNotZero
+                        MsgBox("ErrorLastChannelNotZero")
+                    Case ErrorDiffRangeNotSupport
+                        MsgBox("ErrorDiffRangeNotSupport")
+                    Case ErrorChannelNotDescending
+                        MsgBox("ErrorChannelNotDescending")
+                    Case ErrorChannelNotAscending
+                        MsgBox("ErrorChannelNotAscending")
+                    Case Else
+                        MsgBox("AI_ContScanChannel failed , but unknown reasons!")
+                        Exit Sub
+                End Select
+            End If
+            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-        'result = D2K_AI_ContScanChannelsToFile(cardNum, ADChanCount - 1, BufId, filename, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
-        'End If
+            'result = D2K_AI_ContScanChannelsToFile(cardNum, ADChanCount - 1, BufId, filename, ScanCount, ScanIntrv, SampleIntrv, ASYNCH_OP)
+        End If
 
     End Sub
 

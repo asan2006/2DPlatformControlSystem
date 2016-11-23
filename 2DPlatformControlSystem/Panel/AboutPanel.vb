@@ -10,6 +10,12 @@ TrdControl Function:
 1. Linear motion as Velocity Mode;
 2. Rotate motion as Positon Mode;
 3. Using for iTest, aTest, cTest for sensor.
+
+TiltStep Function:
+1. Tilt Step test for ATxxVx.xx;
+2. Every tile step loop will avereged to one data;
+3. Can test 4 sensor samples synchronize, if the fixture allowed;
+
 "
     End Sub
 End Class

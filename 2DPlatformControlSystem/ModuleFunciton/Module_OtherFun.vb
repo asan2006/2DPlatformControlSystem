@@ -62,7 +62,7 @@ Module Module_OtherFun
     End Sub
 
 
-    Private Function Digital2Voltage(ByVal data As UShort) As Double
+    Function Digital2Voltage(ByVal data As UShort) As Double
         'use AD_B_10_V  as voltage input range
         Dim vMax As Double = 10
         Dim vMin As Double = -10

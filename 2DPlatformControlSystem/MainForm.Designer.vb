@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class MainForm
     Inherits System.Windows.Forms.Form
 
     'Form 重写 Dispose，以清理组件列表。
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,21 +20,25 @@ Partial Class MainForm
     '注意: 以下过程是 Windows 窗体设计器所必需的
     '可以使用 Windows 窗体设计器修改它。  
     '不要使用代码编辑器修改它。
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
-        Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
+        Me.tbTiltStep = New System.Windows.Forms.TabPage()
         Me.tbAbout = New System.Windows.Forms.TabPage()
+        Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
+        Me.TiltStepPanel1 = New _2DPlatformControlSystem.TiltStepPanel()
         Me.AboutPanel1 = New _2DPlatformControlSystem.AboutPanel()
         Me.TabControl1.SuspendLayout()
         Me.tbTrdControl.SuspendLayout()
+        Me.tbTiltStep.SuspendLayout()
         Me.tbAbout.SuspendLayout()
         Me.SuspendLayout()
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.tbTrdControl)
+        Me.TabControl1.Controls.Add(Me.tbTiltStep)
         Me.TabControl1.Controls.Add(Me.tbAbout)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -55,12 +59,16 @@ Partial Class MainForm
         Me.tbTrdControl.Text = "TrdControl"
         Me.tbTrdControl.UseVisualStyleBackColor = True
         '
-        'TrdControlPanel1
+        'tbTiltStep
         '
-        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TrdControlPanel1.Name = "TrdControlPanel1"
-        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
-        Me.TrdControlPanel1.TabIndex = 2
+        Me.tbTiltStep.Controls.Add(Me.TiltStepPanel1)
+        Me.tbTiltStep.Location = New System.Drawing.Point(4, 22)
+        Me.tbTiltStep.Name = "tbTiltStep"
+        Me.tbTiltStep.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbTiltStep.Size = New System.Drawing.Size(920, 546)
+        Me.tbTiltStep.TabIndex = 2
+        Me.tbTiltStep.Text = "TiltStep"
+        Me.tbTiltStep.UseVisualStyleBackColor = True
         '
         'tbAbout
         '
@@ -72,6 +80,20 @@ Partial Class MainForm
         Me.tbAbout.TabIndex = 1
         Me.tbAbout.Text = "About"
         Me.tbAbout.UseVisualStyleBackColor = True
+        '
+        'TrdControlPanel1
+        '
+        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel1.Name = "TrdControlPanel1"
+        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
+        Me.TrdControlPanel1.TabIndex = 2
+        '
+        'TiltStepPanel1
+        '
+        Me.TiltStepPanel1.Location = New System.Drawing.Point(5, 5)
+        Me.TiltStepPanel1.Name = "TiltStepPanel1"
+        Me.TiltStepPanel1.Size = New System.Drawing.Size(912, 538)
+        Me.TiltStepPanel1.TabIndex = 0
         '
         'AboutPanel1
         '
@@ -91,6 +113,7 @@ Partial Class MainForm
         Me.Text = "2DPlatformControlSystem"
         Me.TabControl1.ResumeLayout(False)
         Me.tbTrdControl.ResumeLayout(False)
+        Me.tbTiltStep.ResumeLayout(False)
         Me.tbAbout.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -101,4 +124,6 @@ Partial Class MainForm
     Friend WithEvents tbAbout As TabPage
     Friend WithEvents TrdControlPanel1 As TrdControlPanel
     Friend WithEvents AboutPanel1 As AboutPanel
+    Friend WithEvents tbTiltStep As TabPage
+    Friend WithEvents TiltStepPanel1 As TiltStepPanel
 End Class
