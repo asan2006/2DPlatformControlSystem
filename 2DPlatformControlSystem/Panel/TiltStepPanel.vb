@@ -147,7 +147,7 @@
 
         For i = 0 To ADChanCount - 1
             'unit by millivolt
-            rtData(i) = aveData(0, i) * 1000
+            rtData(i) = aveData(0, i)
         Next
 
         'return double(ADChanCount-1)

@@ -35,6 +35,7 @@ Partial Class TiltStepPanel
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -63,7 +64,6 @@ Partial Class TiltStepPanel
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.tsslStatus = New System.Windows.Forms.ToolStripStatusLabel()
         Me.tm = New System.Windows.Forms.Timer(Me.components)
-        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
@@ -184,6 +184,21 @@ Partial Class TiltStepPanel
         Me.Label1.Size = New System.Drawing.Size(59, 12)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "StartTilt"
+        '
+        'RotatePosModeCfg1
+        '
+        Me.RotatePosModeCfg1.IsRotatePosMode = True
+        Me.RotatePosModeCfg1.Location = New System.Drawing.Point(6, 20)
+        Me.RotatePosModeCfg1.Name = "RotatePosModeCfg1"
+        Me.RotatePosModeCfg1.RCurSpeed = 0R
+        Me.RotatePosModeCfg1.RDelayTime = 0R
+        Me.RotatePosModeCfg1.RDist = 1.0R
+        Me.RotatePosModeCfg1.RMaxVel = 1.0R
+        Me.RotatePosModeCfg1.RStrVel = 0R
+        Me.RotatePosModeCfg1.RTacc = 0.1R
+        Me.RotatePosModeCfg1.RTdec = 0.1R
+        Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 186)
+        Me.RotatePosModeCfg1.TabIndex = 0
         '
         'GroupBox3
         '
@@ -451,21 +466,6 @@ Partial Class TiltStepPanel
         '
         'tm
         '
-        '
-        'RotatePosModeCfg1
-        '
-        Me.RotatePosModeCfg1.IsRotatePosMode = True
-        Me.RotatePosModeCfg1.Location = New System.Drawing.Point(6, 20)
-        Me.RotatePosModeCfg1.Name = "RotatePosModeCfg1"
-        Me.RotatePosModeCfg1.RCurSpeed = 0R
-        Me.RotatePosModeCfg1.RDelayTime = 0R
-        Me.RotatePosModeCfg1.RDist = 1.0R
-        Me.RotatePosModeCfg1.RMaxVel = 1.0R
-        Me.RotatePosModeCfg1.RStrVel = 0R
-        Me.RotatePosModeCfg1.RTacc = 0.1R
-        Me.RotatePosModeCfg1.RTdec = 0.1R
-        Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 186)
-        Me.RotatePosModeCfg1.TabIndex = 0
         '
         'TiltStepPanel
         '
