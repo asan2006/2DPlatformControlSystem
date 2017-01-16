@@ -12,6 +12,7 @@
     Sub initial_DAQ2005()
         'set daq 2005 card register
         Dim card2005 As Short = 0
+
         Dim result As Short = D2K_Register_Card(DAQ_2005, card2005)
         If result < 0 Then
             Select Case result
@@ -31,6 +32,7 @@
     End Sub
 
     Sub StartDAQ(ByVal cardNum As Short, ByVal ScanIntrv As Integer, ByVal ScanCount As Integer, ByVal ADChanCount As Integer, ByVal scanFileFormatMode As String, Optional ByVal filename As String = Nothing)
+
         Dim result As Integer
         Dim BufId As Short
         Dim ReTrgCnt As Short = 0
@@ -222,6 +224,25 @@
                     MsgBox("AI_AsyncClear failed , but unknown reasons!")
                     Exit Sub
             End Select
+        End If
+    End Sub
+
+    Sub CalibrationDaq2005(cardNum As Short)
+        'Calibration DAQ2005 card
+        Dim result As Short = D2K_DB_Auto_Calibration_ALL(cardNum)
+        If result <> 0 Then
+            Select Case result
+                Case ErrorInvalidCardNumber
+                    MsgBox("ErrorInvalidCardNumber")
+                Case ErrorCardNotRegistered
+                    MsgBox("ErrorCardNotRegistered")
+                Case ErrorFuncNotSupport
+                    MsgBox("ErrorFuncNotSupport")
+                Case ErrorInvalidIoChannel
+                    MsgBox("ErrorInvalidIoChannel")
+            End Select
+        Else
+            MsgBox("Calibration Daq2005 OK!")
         End If
     End Sub
 

@@ -28,6 +28,7 @@ Partial Class TrdControlPanel
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
         Me.tm = New System.Windows.Forms.Timer(Me.components)
+        Me.btnCalibration = New System.Windows.Forms.Button()
         Me.PositionStatus1 = New _2DPlatformControlSystem.PositionStatus()
         Me.DaqCfg1 = New _2DPlatformControlSystem.DaqCfg()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
@@ -78,6 +79,15 @@ Partial Class TrdControlPanel
         'tm
         '
         Me.tm.Interval = 50
+        '
+        'btnCalibration
+        '
+        Me.btnCalibration.Location = New System.Drawing.Point(405, 389)
+        Me.btnCalibration.Name = "btnCalibration"
+        Me.btnCalibration.Size = New System.Drawing.Size(121, 43)
+        Me.btnCalibration.TabIndex = 8
+        Me.btnCalibration.Text = "CalibrationCard"
+        Me.btnCalibration.UseVisualStyleBackColor = True
         '
         'PositionStatus1
         '
@@ -143,6 +153,7 @@ Partial Class TrdControlPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.btnCalibration)
         Me.Controls.Add(Me.PositionStatus1)
         Me.Controls.Add(Me.DaqCfg1)
         Me.Controls.Add(Me.LoadCfgFile1)
@@ -167,4 +178,5 @@ Partial Class TrdControlPanel
     Friend WithEvents DaqCfg1 As DaqCfg
     Friend WithEvents tm As Timer
     Friend WithEvents PositionStatus1 As PositionStatus
+    Friend WithEvents btnCalibration As Button
 End Class

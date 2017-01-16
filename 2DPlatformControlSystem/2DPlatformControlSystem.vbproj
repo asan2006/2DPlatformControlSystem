@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>_2DPlatformControlSystem.My.MyApplication</StartupObject>
     <RootNamespace>_2DPlatformControlSystem</RootNamespace>
-    <AssemblyName>2DPlatformControlSystem V0.3</AssemblyName>
+    <AssemblyName>2DPlatformControlSystem V0.4</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -20,7 +20,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.3.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.4.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.3.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.4.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -49,7 +49,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resource\2d.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\2d.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Excel2013">
@@ -83,6 +83,12 @@
     <Compile Include="Lib\AppInfo.vb" />
     <Compile Include="Lib\D2kDask.vb" />
     <Compile Include="Lib\pci_8158.vb" />
+    <Compile Include="LoadingForm.Designer.vb">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="LoadingForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="MainForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -164,6 +170,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -229,7 +238,8 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resource\2d.ico" />
+    <None Include="Resources\loading.gif" />
+    <Content Include="Resources\2d.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

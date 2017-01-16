@@ -344,4 +344,8 @@
         Start_1Axis_tr_move(1, PositionStatus1.RPosSet, 0, 30, 0.1, 0.1)
     End Sub
 
+    Private Sub btnCalibration_Click(sender As Object, e As EventArgs) Handles btnCalibration.Click
+        Dim f As New LoadingForm
+        f.ShowDialog()
+    End Sub
 End Class
