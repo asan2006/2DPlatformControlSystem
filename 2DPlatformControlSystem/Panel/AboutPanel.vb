@@ -6,6 +6,8 @@
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
         txtAbout.Text = "
+Note: Please operate Daq Self-Calibration at TrdControl panel, before data acquired!!!
+
 TrdControl Function:
 1. Linear motion as Velocity Mode;
 2. Rotate motion as Positon Mode;
