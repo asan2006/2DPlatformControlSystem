@@ -1,2 +1,2 @@
-C:\Users\bin__\Desktop\tmp\cfg1 - 副本
-C:\Users\bin__\Desktop\tmp\cfg1
+C:\Users\bin__\Desktop\TMP\iTest配置文件\加速度配置文件
+C:\Users\bin__\Desktop\TMP\iTest配置文件\转动配置文件
