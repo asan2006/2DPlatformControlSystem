@@ -70,7 +70,7 @@
             B_8158_start_tr_move(1, dist(1), strVal(1), maxVal(1), Tacc(1), Tdec(1))
         Else
             ' two axis motion start at the sime time
-            B_8158_set_tr_move_all(2, axisArray(0), dist(0), strVal(0), maxVal(0), Tacc(0), Tdec(0))
+            B_8158_set_tr_move_all(2, axisArray, dist, strVal, maxVal, Tacc, Tdec)
             B_8158_start_move_all(0)
         End If
 
@@ -97,7 +97,7 @@
         'stop axis with decelerate instead of immediately
         'WARNING: when Tdec is 1 seconde, the decelerate time actully is 0.5 seconde, half if the special value , 
         'I have not get this reason, if necssary ,connect supplier to get the answer .
-        B_8158_sd_stop(axisNo, Tdec * 2)
+        B_8158_sd_stop(axisNo, Tdec)
     End Sub
 
     Sub Start_1Axis_tr_move(ByVal axisNo As Short, ByVal dist As Double, ByVal strVel As Double, ByVal maxVel As Double, ByVal Tacc As Double, ByVal Tdec As Double)
