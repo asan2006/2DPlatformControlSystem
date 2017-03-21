@@ -1,0 +1,5 @@
+Time_Duration(s)	Send_Speed(mm/s)	FeedBack_Speed(mm/s)
+0.000000	0	0
+0.002230	0	0
+0.002307	0	0
+
