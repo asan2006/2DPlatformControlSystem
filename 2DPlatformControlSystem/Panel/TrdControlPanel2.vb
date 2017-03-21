@@ -70,7 +70,7 @@
             Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets(1)
 
             Dim motionMode As String = xlSheet.Range("B2").Value
-            If motionMode = "TrdControl" Then
+            If motionMode = "TrdControl2" Then
                 'Verify the motion as right mode as the configure file
 
                 LinearPosModeCfg1.IsLinearVelMode = xlSheet.Range("B3").Value
