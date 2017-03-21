@@ -1,8 +1,9 @@
-﻿Public Class TrdControlPanel
+﻿Public Class TrdControlPanel2
     ''' <summary>
     ''' TrdControlPanel with linear motion as velocity mode
     ''' rotate motion as position mode
     ''' </summary>
+
     Const card8158 As Short = 0
     Const card2005 As Short = 0
 
@@ -30,7 +31,7 @@
     Dim LmaxVel As Double
     Dim LTacc As Double
     Dim LTdec As Double
-    Dim LTUnif As Double
+    Dim LDist As Double
     Dim LTdelay As Double
     Dim RstrVel As Double
     Dim RmaxVel As Double
@@ -72,12 +73,12 @@
             If motionMode = "TrdControl" Then
                 'Verify the motion as right mode as the configure file
 
-                LinearVelModeCfg1.IsLinearVelMode = xlSheet.Range("B3").Value
-                LinearVelModeCfg1.LDelayTime = xlSheet.Range("B4").Value
-                LinearVelModeCfg1.LTacc = xlSheet.Range("B5").Value
-                LinearVelModeCfg1.LTdec = xlSheet.Range("B6").Value
-                LinearVelModeCfg1.LMaxVel = xlSheet.Range("B7").Value
-                LinearVelModeCfg1.LTunif = xlSheet.Range("B8").Value
+                LinearPosModeCfg1.IsLinearVelMode = xlSheet.Range("B3").Value
+                LinearPosModeCfg1.LDelayTime = xlSheet.Range("B4").Value
+                LinearPosModeCfg1.LTacc = xlSheet.Range("B5").Value
+                LinearPosModeCfg1.LTdec = xlSheet.Range("B6").Value
+                LinearPosModeCfg1.LMaxVel = xlSheet.Range("B7").Value
+                LinearPosModeCfg1.LDist = xlSheet.Range("B8").Value
 
                 RotatePosModeCfg1.IsRotatePosMode = xlSheet.Range("B9").Value
                 RotatePosModeCfg1.RDelayTime = xlSheet.Range("B10").Value
@@ -144,19 +145,19 @@
 
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         'pci-8158
-        LstrVel = LinearVelModeCfg1.LStrVel
-        LmaxVel = LinearVelModeCfg1.LMaxVel
-        LTacc = LinearVelModeCfg1.LTacc
-        LTdec = LinearVelModeCfg1.LTdec
-        LTUnif = LinearVelModeCfg1.LTunif
-        LTdelay = LinearVelModeCfg1.LDelayTime
+        LstrVel = LinearPosModeCfg1.LStrVel
+        LmaxVel = LinearPosModeCfg1.LMaxVel
+        LTacc = LinearPosModeCfg1.LTacc
+        LTdec = LinearPosModeCfg1.LTdec
+        LDist = LinearPosModeCfg1.LDist
+        LTdelay = LinearPosModeCfg1.LDelayTime
         RstrVel = RotatePosModeCfg1.RStrVel
         RmaxVel = RotatePosModeCfg1.RMaxVel
         RTacc = RotatePosModeCfg1.RTacc
         RTdec = RotatePosModeCfg1.RTdec
         RDist = RotatePosModeCfg1.RDist
 
-        If LinearVelModeCfg1.IsLinearVelMode Then
+        If LinearPosModeCfg1.IsLinearVelMode Then
             'Linear Motion mode
             axis = 0
         End If
@@ -166,13 +167,13 @@
             axis = 1
         End If
 
-        If LinearVelModeCfg1.IsLinearVelMode And RotatePosModeCfg1.IsRotatePosMode Then
+        If LinearPosModeCfg1.IsLinearVelMode And RotatePosModeCfg1.IsRotatePosMode Then
             'both axis select , mixed motion mode
             axis = 2
         End If
 
         motionMode = M_MODE.VELOCITY
-        If LmaxVel > 0 Then
+        If LDist > 0 Then
             motionDirect = True
         Else
             motionDirect = False
@@ -210,7 +211,7 @@
         motionStatus = True         'Begin to move , and bengin to acquire decode data
 
         'if DAQ2005 enable, then acquire the feedback data
-        If DaqCfg1.IsDaqEnable And LinearVelModeCfg1.IsLinearVelMode Then
+        If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearVelMode Then
             sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
             sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
 
@@ -228,14 +229,14 @@
         ' VELOCITY MOTION MODE ONLY FIT AXIS
         Select Case axis
             Case 0
-                Start_1Axis_tv_move(axis, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
+                Start_1Axis_tr_move(axis, LDist, LstrVel, LmaxVel, LTacc, LTdec)
             Case 1
                 Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
             Case 2
                 'rotate first, then linear motion
                 Start_1Axis_tr_move(1, RDist, RstrVel, RmaxVel, RTacc, RTdec)
-                System.Threading.Thread.Sleep(LTdelay)
-                Start_1Axis_tv_move(0, LstrVel, LmaxVel, LTacc, LTUnif, LTdec)
+                System.Threading.Thread.Sleep(LdelayTime)
+                Start_1Axis_tr_move(0, LDist, LstrVel, LmaxVel, LTacc, LTdec)
         End Select
 
         'waitting for axis stop motion
@@ -312,7 +313,7 @@
 
     Private Sub tm_Tick(sender As Object, e As EventArgs) Handles tm.Tick
         btnMotion.Enabled = isStopMotion() And
-            (LinearVelModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
+            (LinearPosModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
 
         Dim curspd As Double = CurSpeed(0)
         'Dim curFeedSpd = FeedbackSpeed(preTime, prePosT)
@@ -323,7 +324,7 @@
 
         'LinearChart1.plotCurve(curspd, curFeedSpd)
 
-        LinearVelModeCfg1.LCurSpeed = CurSpeed(0)
+        LinearPosModeCfg1.LCurSpeed = CurSpeed(0)
         RotatePosModeCfg1.RCurSpeed = CurSpeed(1)
 
         PositionStatus1.LPosStatus = CurLPos()

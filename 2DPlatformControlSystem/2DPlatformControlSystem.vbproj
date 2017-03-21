@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>_2DPlatformControlSystem.My.MyApplication</StartupObject>
     <RootNamespace>_2DPlatformControlSystem</RootNamespace>
-    <AssemblyName>2DPlatformControlSystem V0.4</AssemblyName>
+    <AssemblyName>2DPlatformControlSystem V0.5</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -20,7 +20,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.4.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.5.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.4.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.5.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -132,6 +132,12 @@
     <Compile Include="Panel\TrdControlPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Panel\TrdControlPanel2.Designer.vb">
+      <DependentUpon>TrdControlPanel2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\TrdControlPanel2.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Unit\DaqCfg.Designer.vb">
       <DependentUpon>DaqCfg.vb</DependentUpon>
     </Compile>
@@ -142,6 +148,12 @@
       <DependentUpon>LinearChart.vb</DependentUpon>
     </Compile>
     <Compile Include="Unit\LinearChart.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\LinearPosModeCfg.Designer.vb">
+      <DependentUpon>LinearPosModeCfg.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\LinearPosModeCfg.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Unit\LinearVelModeCfg.Designer.vb">
@@ -191,11 +203,17 @@
     <EmbeddedResource Include="Panel\TrdControlPanel.resx">
       <DependentUpon>TrdControlPanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panel\TrdControlPanel2.resx">
+      <DependentUpon>TrdControlPanel2.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Unit\DaqCfg.resx">
       <DependentUpon>DaqCfg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearChart.resx">
       <DependentUpon>LinearChart.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\LinearPosModeCfg.resx">
+      <DependentUpon>LinearPosModeCfg.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearVelModeCfg.resx">
       <DependentUpon>LinearVelModeCfg.vb</DependentUpon>
