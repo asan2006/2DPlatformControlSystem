@@ -13,6 +13,11 @@ TrdControl Function:
 2. Rotate motion as Positon Mode;
 3. Using for iTest, aTest, cTest for sensor.
 
+TrdControl2 Function:
+1. Linear motion as Positon Mode;
+2. Rotate motion as Positon Mode;
+3. Beta(Using for iTest, aTest, cTest for sensor).
+
 TiltStep Function:
 1. Tilt Step test for ATxxVx.xx;
 2. Every tile step loop will avereged to one data;
