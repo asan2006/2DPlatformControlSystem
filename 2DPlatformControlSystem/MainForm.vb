@@ -21,6 +21,8 @@
         Dim tc As TabControl = sender
         If tc.SelectedTab.Name = tbTrdControl.Name Then
             TrdControlPanel1.tm.Enabled = True
+        ElseIf tc.SelectedTab.Name = tbTrdControl2.Name Then
+            TrdControlPanel2.tm.Enabled = True
         ElseIf tc.SelectedTab.Name = tbTiltStep.Name Then
             TiltStepPanel1.tm.Enabled = True
         End If
