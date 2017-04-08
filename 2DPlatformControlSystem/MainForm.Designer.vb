@@ -24,13 +24,13 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
-        Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
         Me.tbTrdControl2 = New System.Windows.Forms.TabPage()
         Me.tbTiltStep = New System.Windows.Forms.TabPage()
-        Me.TiltStepPanel1 = New _2DPlatformControlSystem.TiltStepPanel()
         Me.tbAbout = New System.Windows.Forms.TabPage()
-        Me.AboutPanel1 = New _2DPlatformControlSystem.AboutPanel()
+        Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
         Me.TrdControlPanel2 = New _2DPlatformControlSystem.TrdControlPanel2()
+        Me.TiltStepPanel1 = New _2DPlatformControlSystem.TiltStepPanel()
+        Me.AboutPanel1 = New _2DPlatformControlSystem.AboutPanel()
         Me.TabControl1.SuspendLayout()
         Me.tbTrdControl.SuspendLayout()
         Me.tbTrdControl2.SuspendLayout()
@@ -63,13 +63,6 @@ Partial Class MainForm
         Me.tbTrdControl.Text = "TrdControl"
         Me.tbTrdControl.UseVisualStyleBackColor = True
         '
-        'TrdControlPanel1
-        '
-        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TrdControlPanel1.Name = "TrdControlPanel1"
-        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
-        Me.TrdControlPanel1.TabIndex = 2
-        '
         'tbTrdControl2
         '
         Me.tbTrdControl2.Controls.Add(Me.TrdControlPanel2)
@@ -91,13 +84,6 @@ Partial Class MainForm
         Me.tbTiltStep.Text = "TiltStep"
         Me.tbTiltStep.UseVisualStyleBackColor = True
         '
-        'TiltStepPanel1
-        '
-        Me.TiltStepPanel1.Location = New System.Drawing.Point(5, 5)
-        Me.TiltStepPanel1.Name = "TiltStepPanel1"
-        Me.TiltStepPanel1.Size = New System.Drawing.Size(912, 538)
-        Me.TiltStepPanel1.TabIndex = 0
-        '
         'tbAbout
         '
         Me.tbAbout.Controls.Add(Me.AboutPanel1)
@@ -109,6 +95,28 @@ Partial Class MainForm
         Me.tbAbout.Text = "About"
         Me.tbAbout.UseVisualStyleBackColor = True
         '
+        'TrdControlPanel1
+        '
+        Me.TrdControlPanel1.Enabled = False
+        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel1.Name = "TrdControlPanel1"
+        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
+        Me.TrdControlPanel1.TabIndex = 2
+        '
+        'TrdControlPanel2
+        '
+        Me.TrdControlPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel2.Name = "TrdControlPanel2"
+        Me.TrdControlPanel2.Size = New System.Drawing.Size(922, 541)
+        Me.TrdControlPanel2.TabIndex = 0
+        '
+        'TiltStepPanel1
+        '
+        Me.TiltStepPanel1.Location = New System.Drawing.Point(5, 5)
+        Me.TiltStepPanel1.Name = "TiltStepPanel1"
+        Me.TiltStepPanel1.Size = New System.Drawing.Size(912, 538)
+        Me.TiltStepPanel1.TabIndex = 0
+        '
         'AboutPanel1
         '
         Me.AboutPanel1.Dock = System.Windows.Forms.DockStyle.Fill
@@ -116,13 +124,6 @@ Partial Class MainForm
         Me.AboutPanel1.Name = "AboutPanel1"
         Me.AboutPanel1.Size = New System.Drawing.Size(914, 540)
         Me.AboutPanel1.TabIndex = 0
-        '
-        'TrdControlPanel21
-        '
-        Me.TrdControlPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.TrdControlPanel2.Name = "TrdControlPanel2"
-        Me.TrdControlPanel2.Size = New System.Drawing.Size(922, 541)
-        Me.TrdControlPanel2.TabIndex = 0
         '
         'MainForm
         '

@@ -28,7 +28,7 @@ Module Module_OtherFun
     ''' <remarks></remarks>
     ''' 
 
-    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing)
+    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
 
         'initial ScanCount and ADChanCount
         Dim ADChanCount As Integer = 4
@@ -57,7 +57,7 @@ Module Module_OtherFun
             Next
             sb.AppendLine()
         Next
-        SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange)
+        SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange, sbFeedback)
 
     End Sub
 
@@ -111,7 +111,7 @@ Module Module_OtherFun
         End If
     End Function
 
-    Private Sub SaveToXls(ByVal StrData As String, ByVal StrExpCondition As String, ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing)
+    Private Sub SaveToXls(ByVal StrData As String, ByVal StrExpCondition As String, ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
 
         If String.IsNullOrEmpty(StrData) Or String.IsNullOrEmpty(StrFileName) Then
             Return
@@ -125,12 +125,22 @@ Module Module_OtherFun
 
                 System.Windows.Forms.Clipboard.SetDataObject(StrData)
                 xlSheet.Paste()
-
                 '------------------------------------------------------------------------------
                 ' here experimental conditions content will write in excel file at cell("W1")
                 System.Windows.Forms.Clipboard.SetDataObject(StrExpCondition)
                 xlSheet.Range("W1").PasteSpecial()
 
+                '------------------------------------------------------------------------------
+
+                '------------------------------------------------------------------------------
+                ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
+                If Not IsNothing(sbFeedback) Then
+                    Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
+                    xlSheetDecoder.Name = "Decoder"
+                    System.Windows.Forms.Clipboard.SetDataObject(sbFeedback.ToString())
+                    xlSheetDecoder.Paste()
+                    ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
+                End If
                 '------------------------------------------------------------------------------
 
                 If StrChartRange <> "" Then
@@ -165,6 +175,12 @@ Module Module_OtherFun
 
     Private Sub LineChart(ByVal xlSheet As Microsoft.Office.Interop.Excel.Worksheet, ByVal oRange As Microsoft.Office.Interop.Excel.Range)
         Dim oShape As Microsoft.Office.Interop.Excel.Shape = xlSheet.Shapes.AddChart(Microsoft.Office.Interop.Excel.XlChartType.xlLine)
+        Dim oChart As Microsoft.Office.Interop.Excel.Chart = oShape.Chart
+        oChart.SetSourceData(oRange)
+    End Sub
+
+    Private Sub ScatterChart(ByVal xlSheet As Microsoft.Office.Interop.Excel.Worksheet, ByVal oRange As Microsoft.Office.Interop.Excel.Range)
+        Dim oShape As Microsoft.Office.Interop.Excel.Shape = xlSheet.Shapes.AddChart(Microsoft.Office.Interop.Excel.XlChartType.xlXYScatterLinesNoMarkers)
         Dim oChart As Microsoft.Office.Interop.Excel.Chart = oShape.Chart
         oChart.SetSourceData(oRange)
     End Sub
