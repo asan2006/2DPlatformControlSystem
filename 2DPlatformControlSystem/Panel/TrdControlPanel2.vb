@@ -190,6 +190,7 @@ Public Class TrdControlPanel2
             isFeedback = True
             sbFeedback = New System.Text.StringBuilder
         Else
+            isFeedback = False
             sbFeedback = Nothing
         End If
 

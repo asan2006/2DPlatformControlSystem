@@ -120,6 +120,12 @@
     <Compile Include="Panel\AboutPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Panel\Automation.Designer.vb">
+      <DependentUpon>Automation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\Automation.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Panel\TiltStepPanel.Designer.vb">
       <DependentUpon>TiltStepPanel.vb</DependentUpon>
     </Compile>
@@ -196,6 +202,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Panel\AboutPanel.resx">
       <DependentUpon>AboutPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panel\Automation.resx">
+      <DependentUpon>Automation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel\TiltStepPanel.resx">
       <DependentUpon>TiltStepPanel.vb</DependentUpon>
