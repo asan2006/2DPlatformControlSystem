@@ -1,4 +1,5 @@
-﻿Public Class TrdControlPanel2
+﻿
+Public Class TrdControlPanel2
     ''' <summary>
     ''' TrdControlPanel with linear motion as velocity mode
     ''' rotate motion as position mode
@@ -10,7 +11,6 @@
     'preTime/prePos used to calc feedback speed
     'Dim preTime As DateTime
     Dim preTime As Long = 0
-    Dim prePosT As Double = 0
     Dim preCount As Long
     Dim prePos As Double = 0
     Dim CPUfreq As Long
@@ -25,6 +25,11 @@
     'control the decode/incode data acquire is continue or over ???
     Dim motionStatus As Boolean = False
     'a streamwrite obj to write data to txt file
+
+    'Is feedback data acquired
+    Dim isFeedback As Boolean = False
+    Dim sbFeedback As System.Text.StringBuilder
+
     Dim sw As IO.StreamWriter
 
     Dim LstrVel As Double
@@ -45,7 +50,7 @@
     'targetPos is used for velocity motion mode to stop motion at target position
     Dim targetPos As Double
 
-    Dim MotionThread As System.Threading.Thread
+    Public MotionThread As System.Threading.Thread
     Dim motionDirect As Boolean = True  'when value is true ,motion speed is positive;else is negative
 
 
@@ -60,7 +65,7 @@
         'LoadCfgFile1.cfgFilePath = Application.StartupPath + "\Configure\"
     End Sub
 
-    Private Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
+    Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
         'configure change event occured!!!
         Try
 
@@ -120,7 +125,7 @@
         End Try
     End Sub
 
-    Private Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
+    Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
 
         'initial preCount , CPUfreq , prePos
         'intial preCount after start 2005 card
@@ -180,18 +185,15 @@
         End If
 
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        'set motion info to txt
+        'if DAQ2005 enable, then acquire the feedback data
+        If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearVelMode Then
+            isFeedback = True
+            sbFeedback = New System.Text.StringBuilder
+        Else
+            isFeedback = False
+            sbFeedback = Nothing
+        End If
 
-        'Dim motionInfo As String
-        'motionInfo = "AccTime:  " & txtAccTime.Text & " S" & vbCrLf &
-        '    "MaxSpeed:  " & txtMaxSpeedP.Text & " MM/S" & vbCrLf &
-        '    "UniformTime:  " & txtUnifTime.Text & " MM"
-        'If chkDaq2005Enable.Checked Then
-        '    motionInfo = motionInfo & vbCrLf &
-        '        "Scan Intervals :   " & cboScanInterval.Text & vbCrLf &
-        '        "Data Size      :   " & CboDataSize.Text
-        'End If
-        'WriteInfoToTxt(motionInfo)
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         'avoid invoke method
@@ -211,9 +213,11 @@
         motionStatus = True         'Begin to move , and bengin to acquire decode data
 
         'if DAQ2005 enable, then acquire the feedback data
-        If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearVelMode Then
-            sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
-            sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
+        If isFeedback Then
+            'sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
+            'sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
+
+            sbFeedback.AppendLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
 
             Dim FeedbackThread As New System.Threading.Thread(AddressOf GetFeedback)
             FeedbackThread.Start()
@@ -252,33 +256,37 @@
 
         If DaqCfg1.IsDaqEnable And DaqCfg1.scanFileFormatMode = "XLS" Then
             'SAVE DATA AND SOME INFO
-
-            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart)
+            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, sbFeedback)
         End If
     End Sub
 
     Private Sub GetFeedback()
+
         While motionStatus
-            Dim prepreCount As Double = preCount
 
             Dim curspd As Double = CurSpeed(0)
+            'Dim prepreTime As Long = preTime
+            'Dim curFeedSpd = FeedbackSpeed(preTime, prePos)
+            Dim prepreCount As Double = preCount
             Dim curFeedSpd = FeedbackSpeed2(preCount, prePos, CPUfreq)
 
             If motionDirect = False Then
                 curspd = -CurSpeed(0)
             End If
             'write motion decode data
-            sw.WriteLine(TDuration.ToString("0.000000") & vbTab & curspd & vbTab & curFeedSpd)
+            sbFeedback.AppendLine(TDuration.ToString("0.0000") & vbTab & curspd & vbTab & curFeedSpd)
             TDuration = TDuration + (preCount - prepreCount) / CPUfreq
+            'TDuration = TDuration + (preTime - prepreTime)
+
+            'waiting 1ms
+            System.Threading.Thread.Sleep(1)
         End While
 
-        sw.Flush()
-        sw.Close()
-        sw = Nothing
         TDuration = 0
+
     End Sub
 
-    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+    Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         If axis = 2 Then
             B_8158_stop_move_all(0)
         Else
@@ -306,7 +314,7 @@
         D2K_Release_Card(card2005)
     End Sub
 
-    Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
+    Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
         Release()
         Me.ParentForm.Close()
     End Sub

@@ -18,6 +18,11 @@ TrdControl2 Function:
 2. Rotate motion as Positon Mode;
 3. Beta(Using for iTest, aTest, cTest for sensor).
 
+Automation Function:
+1. Automate test for TrdControl2;
+2. Automate test for iTest, aTest, cTest;
+3. Configure file is xlsx or Configure files infomation in txt file to drag.
+
 TiltStep Function:
 1. Tilt Step test for ATxxVx.xx;
 2. Every tile step loop will avereged to one data;
