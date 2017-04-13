@@ -29,7 +29,8 @@
 
         'loop every cfg file to motion use TrdControl2
         Dim n As Integer = cfgList.Count
-        For i As Integer = 0 To n - 1
+        Dim i As Integer
+        For i = 0 To n - 1
             Dim directoryName = System.IO.Path.GetDirectoryName(cfgList(i))
             Dim fileName = System.IO.Path.GetFileName(cfgList(i))
             '跨线程调用方法
