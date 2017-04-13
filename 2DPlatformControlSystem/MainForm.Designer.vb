@@ -24,17 +24,20 @@ Partial Class MainForm
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
-        Me.tbTrdControl2 = New System.Windows.Forms.TabPage()
-        Me.tbTiltStep = New System.Windows.Forms.TabPage()
-        Me.tbAbout = New System.Windows.Forms.TabPage()
         Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
+        Me.tbTrdControl2 = New System.Windows.Forms.TabPage()
         Me.TrdControlPanel2 = New _2DPlatformControlSystem.TrdControlPanel2()
+        Me.tbTiltStep = New System.Windows.Forms.TabPage()
         Me.TiltStepPanel1 = New _2DPlatformControlSystem.TiltStepPanel()
+        Me.tbAutomation = New System.Windows.Forms.TabPage()
+        Me.AutomationPanel1 = New _2DPlatformControlSystem.AutomationPanel()
+        Me.tbAbout = New System.Windows.Forms.TabPage()
         Me.AboutPanel1 = New _2DPlatformControlSystem.AboutPanel()
         Me.TabControl1.SuspendLayout()
         Me.tbTrdControl.SuspendLayout()
         Me.tbTrdControl2.SuspendLayout()
         Me.tbTiltStep.SuspendLayout()
+        Me.tbAutomation.SuspendLayout()
         Me.tbAbout.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -43,6 +46,7 @@ Partial Class MainForm
         Me.TabControl1.Controls.Add(Me.tbTrdControl)
         Me.TabControl1.Controls.Add(Me.tbTrdControl2)
         Me.TabControl1.Controls.Add(Me.tbTiltStep)
+        Me.TabControl1.Controls.Add(Me.tbAutomation)
         Me.TabControl1.Controls.Add(Me.tbAbout)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -63,6 +67,14 @@ Partial Class MainForm
         Me.tbTrdControl.Text = "TrdControl"
         Me.tbTrdControl.UseVisualStyleBackColor = True
         '
+        'TrdControlPanel1
+        '
+        Me.TrdControlPanel1.Enabled = False
+        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel1.Name = "TrdControlPanel1"
+        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
+        Me.TrdControlPanel1.TabIndex = 2
+        '
         'tbTrdControl2
         '
         Me.tbTrdControl2.Controls.Add(Me.TrdControlPanel2)
@@ -72,6 +84,13 @@ Partial Class MainForm
         Me.tbTrdControl2.TabIndex = 3
         Me.tbTrdControl2.Text = "TrdControl2"
         Me.tbTrdControl2.UseVisualStyleBackColor = True
+        '
+        'TrdControlPanel2
+        '
+        Me.TrdControlPanel2.Location = New System.Drawing.Point(0, 0)
+        Me.TrdControlPanel2.Name = "TrdControlPanel2"
+        Me.TrdControlPanel2.Size = New System.Drawing.Size(922, 541)
+        Me.TrdControlPanel2.TabIndex = 0
         '
         'tbTiltStep
         '
@@ -84,6 +103,31 @@ Partial Class MainForm
         Me.tbTiltStep.Text = "TiltStep"
         Me.tbTiltStep.UseVisualStyleBackColor = True
         '
+        'TiltStepPanel1
+        '
+        Me.TiltStepPanel1.Location = New System.Drawing.Point(5, 5)
+        Me.TiltStepPanel1.Name = "TiltStepPanel1"
+        Me.TiltStepPanel1.Size = New System.Drawing.Size(912, 538)
+        Me.TiltStepPanel1.TabIndex = 0
+        '
+        'tbAutomation
+        '
+        Me.tbAutomation.Controls.Add(Me.AutomationPanel1)
+        Me.tbAutomation.Location = New System.Drawing.Point(4, 22)
+        Me.tbAutomation.Name = "tbAutomation"
+        Me.tbAutomation.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbAutomation.Size = New System.Drawing.Size(920, 546)
+        Me.tbAutomation.TabIndex = 4
+        Me.tbAutomation.Text = "Automation"
+        Me.tbAutomation.UseVisualStyleBackColor = True
+        '
+        'AutomationPanel1
+        '
+        Me.AutomationPanel1.Location = New System.Drawing.Point(0, 0)
+        Me.AutomationPanel1.Name = "AutomationPanel1"
+        Me.AutomationPanel1.Size = New System.Drawing.Size(920, 540)
+        Me.AutomationPanel1.TabIndex = 0
+        '
         'tbAbout
         '
         Me.tbAbout.Controls.Add(Me.AboutPanel1)
@@ -94,28 +138,6 @@ Partial Class MainForm
         Me.tbAbout.TabIndex = 1
         Me.tbAbout.Text = "About"
         Me.tbAbout.UseVisualStyleBackColor = True
-        '
-        'TrdControlPanel1
-        '
-        Me.TrdControlPanel1.Enabled = False
-        Me.TrdControlPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.TrdControlPanel1.Name = "TrdControlPanel1"
-        Me.TrdControlPanel1.Size = New System.Drawing.Size(920, 526)
-        Me.TrdControlPanel1.TabIndex = 2
-        '
-        'TrdControlPanel2
-        '
-        Me.TrdControlPanel2.Location = New System.Drawing.Point(0, 0)
-        Me.TrdControlPanel2.Name = "TrdControlPanel2"
-        Me.TrdControlPanel2.Size = New System.Drawing.Size(922, 541)
-        Me.TrdControlPanel2.TabIndex = 0
-        '
-        'TiltStepPanel1
-        '
-        Me.TiltStepPanel1.Location = New System.Drawing.Point(5, 5)
-        Me.TiltStepPanel1.Name = "TiltStepPanel1"
-        Me.TiltStepPanel1.Size = New System.Drawing.Size(912, 538)
-        Me.TiltStepPanel1.TabIndex = 0
         '
         'AboutPanel1
         '
@@ -137,6 +159,7 @@ Partial Class MainForm
         Me.tbTrdControl.ResumeLayout(False)
         Me.tbTrdControl2.ResumeLayout(False)
         Me.tbTiltStep.ResumeLayout(False)
+        Me.tbAutomation.ResumeLayout(False)
         Me.tbAbout.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -151,4 +174,6 @@ Partial Class MainForm
     Friend WithEvents TiltStepPanel1 As TiltStepPanel
     Friend WithEvents tbTrdControl2 As TabPage
     Friend WithEvents TrdControlPanel2 As TrdControlPanel2
+    Friend WithEvents tbAutomation As TabPage
+    Friend WithEvents AutomationPanel1 As AutomationPanel
 End Class

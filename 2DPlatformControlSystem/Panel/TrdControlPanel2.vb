@@ -50,7 +50,7 @@ Public Class TrdControlPanel2
     'targetPos is used for velocity motion mode to stop motion at target position
     Dim targetPos As Double
 
-    Dim MotionThread As System.Threading.Thread
+    Public MotionThread As System.Threading.Thread
     Dim motionDirect As Boolean = True  'when value is true ,motion speed is positive;else is negative
 
 
@@ -65,7 +65,7 @@ Public Class TrdControlPanel2
         'LoadCfgFile1.cfgFilePath = Application.StartupPath + "\Configure\"
     End Sub
 
-    Private Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
+    Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
         'configure change event occured!!!
         Try
 
@@ -125,7 +125,7 @@ Public Class TrdControlPanel2
         End Try
     End Sub
 
-    Private Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
+    Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
 
         'initial preCount , CPUfreq , prePos
         'intial preCount after start 2005 card
@@ -286,7 +286,7 @@ Public Class TrdControlPanel2
 
     End Sub
 
-    Private Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
+    Sub btnStop_Click(sender As Object, e As EventArgs) Handles btnStop.Click
         If axis = 2 Then
             B_8158_stop_move_all(0)
         Else
@@ -314,7 +314,7 @@ Public Class TrdControlPanel2
         D2K_Release_Card(card2005)
     End Sub
 
-    Private Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
+    Sub btnQuit_Click(sender As Object, e As EventArgs) Handles btnQuit.Click
         Release()
         Me.ParentForm.Close()
     End Sub

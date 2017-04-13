@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>_2DPlatformControlSystem.My.MyApplication</StartupObject>
     <RootNamespace>_2DPlatformControlSystem</RootNamespace>
-    <AssemblyName>2DPlatformControlSystem V0.6</AssemblyName>
+    <AssemblyName>2DPlatformControlSystem V0.7</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -20,7 +20,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.6.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.7.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -30,7 +30,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.6.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V0.7.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
   </PropertyGroup>
   <PropertyGroup>
@@ -120,10 +120,10 @@
     <Compile Include="Panel\AboutPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Panel\Automation.Designer.vb">
-      <DependentUpon>Automation.vb</DependentUpon>
+    <Compile Include="Panel\AutomationPanel.Designer.vb">
+      <DependentUpon>AutomationPanel.vb</DependentUpon>
     </Compile>
-    <Compile Include="Panel\Automation.vb">
+    <Compile Include="Panel\AutomationPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Panel\TiltStepPanel.Designer.vb">
@@ -144,10 +144,22 @@
     <Compile Include="Panel\TrdControlPanel2.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Unit\CfgListBox.Designer.vb">
+      <DependentUpon>CfgListBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\CfgListBox.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Unit\DaqCfg.Designer.vb">
       <DependentUpon>DaqCfg.vb</DependentUpon>
     </Compile>
     <Compile Include="Unit\DaqCfg.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\InfoDisp.Designer.vb">
+      <DependentUpon>InfoDisp.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\InfoDisp.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Unit\LinearChart.Designer.vb">
@@ -203,8 +215,8 @@
     <EmbeddedResource Include="Panel\AboutPanel.resx">
       <DependentUpon>AboutPanel.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Panel\Automation.resx">
-      <DependentUpon>Automation.vb</DependentUpon>
+    <EmbeddedResource Include="Panel\AutomationPanel.resx">
+      <DependentUpon>AutomationPanel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panel\TiltStepPanel.resx">
       <DependentUpon>TiltStepPanel.vb</DependentUpon>
@@ -215,8 +227,14 @@
     <EmbeddedResource Include="Panel\TrdControlPanel2.resx">
       <DependentUpon>TrdControlPanel2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Unit\CfgListBox.resx">
+      <DependentUpon>CfgListBox.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Unit\DaqCfg.resx">
       <DependentUpon>DaqCfg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\InfoDisp.resx">
+      <DependentUpon>InfoDisp.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\LinearChart.resx">
       <DependentUpon>LinearChart.vb</DependentUpon>
