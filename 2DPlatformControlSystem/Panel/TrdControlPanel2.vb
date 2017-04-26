@@ -323,6 +323,13 @@ Public Class TrdControlPanel2
         btnMotion.Enabled = isStopMotion() And
             (LinearPosModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
 
+        '如果运动停止，但2005卡仍正在取数据，按钮不可用
+        If Not IsNothing(MotionThread) Then
+            If MotionThread.IsAlive Then
+                btnMotion.Enabled = False
+            End If
+        End If
+
         Dim curspd As Double = CurSpeed(0)
         'Dim curFeedSpd = FeedbackSpeed(preTime, prePosT)
 
