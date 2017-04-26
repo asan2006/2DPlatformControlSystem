@@ -31,33 +31,38 @@
         Dim n As Integer = cfgList.Count
         Dim i As Integer
         For i = 0 To n - 1
-            Dim directoryName = System.IO.Path.GetDirectoryName(cfgList(i))
-            Dim fileName = System.IO.Path.GetFileName(cfgList(i))
-            '跨线程调用方法
-            '加载配置文件
-            Me.Invoke(DirectCast(Sub()
-                                     My.Forms.MainForm.TrdControlPanel2.LoadCfgFile1.cfgFilePath = directoryName
-                                     My.Forms.MainForm.TrdControlPanel2.LoadCfgFile1_CfgSet(fileName)
+            '挂起线程关键词：“SUSPEND_10_SECONDE”
+            If cfgList(i) = "SUSPEND_10_SECONDE" Then
+                System.Threading.Thread.Sleep(10000) '等待10秒，用来矫正传感器数据
+            Else
+                Dim directoryName = System.IO.Path.GetDirectoryName(cfgList(i))
+                Dim fileName = System.IO.Path.GetFileName(cfgList(i))
+                '跨线程调用方法
+                '加载配置文件
+                Me.Invoke(DirectCast(Sub()
+                                         My.Forms.MainForm.TrdControlPanel2.LoadCfgFile1.cfgFilePath = directoryName
+                                         My.Forms.MainForm.TrdControlPanel2.LoadCfgFile1_CfgSet(fileName)
 
-                                     '注意在这里进行excel进程的资源回收，否则无法结束excel进程
-                                     GC.Collect()
-                                     CfgListBox1.SetSelectIndex(i)
-                                     InfoDisp1.AddInfo("Begin Motion: " + fileName)
-                                 End Sub, EventHandler))
-            '开始测试
-            Me.Invoke(DirectCast(Sub()
-                                     My.Forms.MainForm.TrdControlPanel2.btnMotion_Click(Nothing, Nothing)
-                                 End Sub, EventHandler))
-            '判断数据是否采集完了
-            System.Threading.Thread.Sleep(1000) '暂停一段时间等待进入子线程
-            While isMotionThreadAlive
-                System.Threading.Thread.Sleep(500)
-            End While
+                                         '注意在这里进行excel进程的资源回收，否则无法结束excel进程
+                                         GC.Collect()
+                                         CfgListBox1.SetSelectIndex(i)
+                                         InfoDisp1.AddInfo("Begin Motion: " + fileName)
+                                     End Sub, EventHandler))
+                '开始测试
+                Me.Invoke(DirectCast(Sub()
+                                         My.Forms.MainForm.TrdControlPanel2.btnMotion_Click(Nothing, Nothing)
+                                     End Sub, EventHandler))
+                '判断数据是否采集完了
+                System.Threading.Thread.Sleep(1000) '暂停一段时间等待进入子线程
+                While isMotionThreadAlive
+                    System.Threading.Thread.Sleep(500)
+                End While
 
-            '完成测试和数据采集
-            Me.Invoke(DirectCast(Sub()
-                                     InfoDisp1.AddInfo("Complete Motion: " + fileName)
-                                 End Sub, EventHandler))
+                '完成测试和数据采集
+                Me.Invoke(DirectCast(Sub()
+                                         InfoDisp1.AddInfo("Complete Motion: " + fileName)
+                                     End Sub, EventHandler))
+            End If
         Next
     End Sub
 
