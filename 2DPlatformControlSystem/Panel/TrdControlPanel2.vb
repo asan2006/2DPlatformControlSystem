@@ -141,7 +141,9 @@ Public Class TrdControlPanel2
         If DaqCfg1.IsDaqEnable Then
 
             'Always creat *.dat file
-            StartDAQ(card2005, ScanIntrv, ScanCount, ADChanCount, "DAT", DaqCfg1.fileName)
+            'StartDAQ(card2005, ScanIntrv, ScanCount, ADChanCount, "DAT", DaqCfg1.fileName)
+
+            StartDAQ(card2005, ScanIntrv, ScanCount, ADChanCount, DaqCfg1.scanFileFormatMode, DaqCfg1.fileName)
 
         End If
 
