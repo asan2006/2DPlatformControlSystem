@@ -13,9 +13,15 @@ Public Class AutomationPanel
     End Sub
 
     Private Sub btnAutoRun_Click(sender As Object, e As EventArgs) Handles btnAutoRun.Click
-        'motionPanel =
+
         cfgList = CfgListBox1.autoCfgArray
         If cfgList.Count = 0 Then
+            Exit Sub
+        End If
+
+        '从TrdControl2的运行按钮状态来判断是否可以运行
+        If Not My.Forms.MainForm.TrdControlPanel2.btnMotion.Enabled Then
+            InfoDisp1.AddInfo("Can not Motion, Please Check Driver intial!")
             Exit Sub
         End If
 
@@ -119,4 +125,37 @@ Public Class AutomationPanel
         End If
 
     End Sub
+
+    Private Sub btnCheckListItem_Click(sender As Object, e As EventArgs) Handles btnCheckListItem.Click
+        Dim exceptKeys = "^\bSUSPEND_(\d*)_SECONDE\b"
+        InfoDisp1.AddInfo(CheckFileListValidity(exceptKeys))
+    End Sub
+    ''' <summary>
+    ''' 正则表达式判断文件列表有效性
+    ''' </summary>
+    ''' <param name="exceptKeys"></param>
+    ''' <returns></returns>
+    Private Function CheckFileListValidity(exceptKeys As String)
+
+        cfgList = CfgListBox1.autoCfgArray
+        Dim n As Integer = cfgList.Count
+        Dim i As Integer
+        '如果列表为空
+        If n < 1 Then
+            Return "No Item Exit, Please check again!"
+            Exit Function
+        End If
+
+        For i = 0 To n - 1
+            '正则表达式判断匹配,除去关键词外的文件路径检测
+            If Not Regex.IsMatch(cfgList(i), exceptKeys, RegexOptions.IgnoreCase) Then
+                If Not System.IO.File.Exists(cfgList(i)) Then
+                    Return cfgList(i) + " is NOT EXIT, Please check it!"
+                    Exit Function
+                End If
+            End If
+        Next
+
+        Return "Congratulations! All List Item is OK!"
+    End Function
 End Class

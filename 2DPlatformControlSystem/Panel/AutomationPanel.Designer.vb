@@ -26,9 +26,10 @@ Partial Class AutomationPanel
         Me.btnAutoRun = New System.Windows.Forms.Button()
         Me.btnStop = New System.Windows.Forms.Button()
         Me.btnQuit = New System.Windows.Forms.Button()
+        Me.tm_Thread = New System.Windows.Forms.Timer(Me.components)
+        Me.btnCheckListItem = New System.Windows.Forms.Button()
         Me.InfoDisp1 = New _2DPlatformControlSystem.InfoDisp()
         Me.CfgListBox1 = New _2DPlatformControlSystem.CfgListBox()
-        Me.tm_Thread = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'btnAutoRun
@@ -58,6 +59,20 @@ Partial Class AutomationPanel
         Me.btnQuit.Text = "Quit"
         Me.btnQuit.UseVisualStyleBackColor = True
         '
+        'tm_Thread
+        '
+        Me.tm_Thread.Enabled = True
+        Me.tm_Thread.Interval = 500
+        '
+        'btnCheckListItem
+        '
+        Me.btnCheckListItem.Location = New System.Drawing.Point(340, 0)
+        Me.btnCheckListItem.Name = "btnCheckListItem"
+        Me.btnCheckListItem.Size = New System.Drawing.Size(92, 23)
+        Me.btnCheckListItem.TabIndex = 3
+        Me.btnCheckListItem.Text = "CheckListItem"
+        Me.btnCheckListItem.UseVisualStyleBackColor = True
+        '
         'InfoDisp1
         '
         Me.InfoDisp1.AutoScroll = True
@@ -75,15 +90,11 @@ Partial Class AutomationPanel
         Me.CfgListBox1.Size = New System.Drawing.Size(432, 534)
         Me.CfgListBox1.TabIndex = 0
         '
-        'tm_Thread
-        '
-        Me.tm_Thread.Enabled = True
-        Me.tm_Thread.Interval = 500
-        '
         'AutomationPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.Controls.Add(Me.btnCheckListItem)
         Me.Controls.Add(Me.InfoDisp1)
         Me.Controls.Add(Me.btnQuit)
         Me.Controls.Add(Me.btnStop)
@@ -101,4 +112,5 @@ Partial Class AutomationPanel
     Friend WithEvents btnQuit As Button
     Friend WithEvents InfoDisp1 As InfoDisp
     Friend WithEvents tm_Thread As Timer
+    Friend WithEvents btnCheckListItem As Button
 End Class
