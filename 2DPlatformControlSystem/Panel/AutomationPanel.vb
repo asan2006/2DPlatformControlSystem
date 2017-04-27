@@ -1,4 +1,5 @@
-﻿Public Class AutomationPanel
+﻿Imports System.Text.RegularExpressions
+Public Class AutomationPanel
     Dim cfgList As String()
     Dim AutoRunThread As System.Threading.Thread
     Dim isMotionThreadAlive As Boolean = False
@@ -31,15 +32,18 @@
         Dim n As Integer = cfgList.Count
         Dim i As Integer
         For i = 0 To n - 1
-            '挂起线程关键词：“SUSPEND_10_SECONDE”
-            If cfgList(i) = "SUSPEND_10_SECONDE" Then
+            '挂起线程关键词：比如“SUSPEND_10_SECONDE”,表示挂起10S
+            '正则表达式判断匹配
+            Dim suspendPattern = "^\bSUSPEND_(\d*)_SECONDE\b"
+            If Regex.IsMatch(cfgList(i), suspendPattern, RegexOptions.IgnoreCase) Then
                 '跨线程调用方法
                 Me.Invoke(DirectCast(Sub()
                                          CfgListBox1.SetSelectIndex(i)
                                          InfoDisp1.AddInfo("Begin Motion: " + cfgList(i))
                                      End Sub, EventHandler))
 
-                System.Threading.Thread.Sleep(10000) '等待10秒，用来矫正传感器数据
+                Dim suspendTime = CInt(Regex.Match(cfgList(i), suspendPattern).Groups(1).Value)
+                System.Threading.Thread.Sleep(suspendTime * 1000) '等待N秒，用来矫正传感器数据
 
                 '完成
                 Me.Invoke(DirectCast(Sub()
