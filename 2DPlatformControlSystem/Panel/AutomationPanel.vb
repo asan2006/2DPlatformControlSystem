@@ -33,7 +33,19 @@
         For i = 0 To n - 1
             '挂起线程关键词：“SUSPEND_10_SECONDE”
             If cfgList(i) = "SUSPEND_10_SECONDE" Then
+                '跨线程调用方法
+                Me.Invoke(DirectCast(Sub()
+                                         CfgListBox1.SetSelectIndex(i)
+                                         InfoDisp1.AddInfo("Begin Motion: " + cfgList(i))
+                                     End Sub, EventHandler))
+
                 System.Threading.Thread.Sleep(10000) '等待10秒，用来矫正传感器数据
+
+                '完成
+                Me.Invoke(DirectCast(Sub()
+                                         InfoDisp1.AddInfo("Complete Motion: " + cfgList(i))
+                                     End Sub, EventHandler))
+
             Else
                 Dim directoryName = System.IO.Path.GetDirectoryName(cfgList(i))
                 Dim fileName = System.IO.Path.GetFileName(cfgList(i))
