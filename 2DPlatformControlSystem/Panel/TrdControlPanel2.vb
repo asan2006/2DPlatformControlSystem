@@ -138,6 +138,7 @@ Public Class TrdControlPanel2
         Dim ScanIntrv As Integer = DaqCfg1.ScanIntrv
         Dim ScanCount As Integer = DaqCfg1.ScanCount
         Dim ADChanCount As Integer = DaqCfg1.ADChanCount
+        Dim TimeBase As Integer = 40000000
         If DaqCfg1.IsDaqEnable Then
 
             'Always creat *.dat file
@@ -203,6 +204,7 @@ Public Class TrdControlPanel2
         expInfo = DaqCfg1.expInfo
         fileName = DaqCfg1.fileName
         xlsHeader = DaqCfg1.xlsHeader
+        Dt = ScanIntrv / TimeBase * aveNum
         MotionThread = New System.Threading.Thread(AddressOf MotionStart)
         'set threading apartment state as sta mode , so can handle the xlsx file for the data to store
         MotionThread.SetApartmentState(Threading.ApartmentState.STA)

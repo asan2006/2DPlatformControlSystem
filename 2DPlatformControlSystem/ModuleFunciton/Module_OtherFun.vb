@@ -33,12 +33,14 @@ Module Module_OtherFun
         'initial ScanCount and ADChanCount
         Dim ADChanCount As Integer = 4
         Dim ScanCount As Integer = dataBuf.GetLength(0) / ADChanCount
+        Dim xlsHeaderTime As String = "Time(S)"
 
         'dim a stringBuilder to store the data string after average
         Dim sb As StringBuilder = New StringBuilder
         sb.Clear()
         'append xls headed to string builder
-        sb.AppendLine(xlsHeader(0) + vbTab + xlsHeader(1) + vbTab + xlsHeader(2) + vbTab + xlsHeader(3))
+        '加上Time(s)数据列
+        sb.AppendLine(xlsHeaderTime + vbTab + xlsHeader(0) + vbTab + xlsHeader(1) + vbTab + xlsHeader(2) + vbTab + xlsHeader(3))
 
         Dim voltage(ScanCount - 1, ADChanCount - 1) As Double
         Dim i As Integer = 0
@@ -52,6 +54,7 @@ Module Module_OtherFun
         Dim aveData(,) As Double = Average(voltage, aveNum)
 
         For j = 0 To aveData.GetLength(0) - 1
+            sb.Append((Dt * j).ToString + vbTab)
             For k = 0 To aveData.GetLength(1) - 1
                 sb.Append(aveData(j, k).ToString + vbTab)
             Next

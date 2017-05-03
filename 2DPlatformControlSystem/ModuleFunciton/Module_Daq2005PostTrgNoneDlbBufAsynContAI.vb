@@ -6,6 +6,8 @@
     ''' 
 
     Public InBuf() As UShort
+    '数据采集时间间隔，数据样本平均数也计算在内，只用于生成excel数据
+    Public Dt As Double
     ''' <summary>
     ''' initial DAQ2005 card
     ''' </summary>

@@ -147,10 +147,11 @@
         InitializeComponent()
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
-        ChkCH_1.Tag = "A:A"
-        ChkCH_2.Tag = "B:B"
-        ChkCH_3.Tag = "C:C"
-        ChkCH_4.Tag = "D:D"
+        'A列是时间Time(S)列
+        ChkCH_1.Tag = "B:B"
+        ChkCH_2.Tag = "C:C"
+        ChkCH_3.Tag = "D:D"
+        ChkCH_4.Tag = "E:E"
 
         txtFileToSave.Text = Application.StartupPath + "\ADLinkDaq"
     End Sub
