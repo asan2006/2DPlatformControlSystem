@@ -136,7 +136,7 @@ Partial Class TrdControlPanel2
         '
         'LinearPosModeCfg1
         '
-        Me.LinearPosModeCfg1.IsLinearVelMode = False
+        Me.LinearPosModeCfg1.IsLinearPosMode = False
         Me.LinearPosModeCfg1.LCurSpeed = 0R
         Me.LinearPosModeCfg1.LDelayTime = 1.0R
         Me.LinearPosModeCfg1.LDist = 60.0R

@@ -31,6 +31,8 @@ Partial Class MainForm
         Me.TiltStepPanel1 = New _2DPlatformControlSystem.TiltStepPanel()
         Me.tbAutomation = New System.Windows.Forms.TabPage()
         Me.AutomationPanel1 = New _2DPlatformControlSystem.AutomationPanel()
+        Me.tbConMotion = New System.Windows.Forms.TabPage()
+        Me.ContinueMotionPanel1 = New _2DPlatformControlSystem.ContinueMotionPanel()
         Me.tbAbout = New System.Windows.Forms.TabPage()
         Me.AboutPanel1 = New _2DPlatformControlSystem.AboutPanel()
         Me.TabControl1.SuspendLayout()
@@ -38,6 +40,7 @@ Partial Class MainForm
         Me.tbTrdControl2.SuspendLayout()
         Me.tbTiltStep.SuspendLayout()
         Me.tbAutomation.SuspendLayout()
+        Me.tbConMotion.SuspendLayout()
         Me.tbAbout.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -47,6 +50,7 @@ Partial Class MainForm
         Me.TabControl1.Controls.Add(Me.tbTrdControl2)
         Me.TabControl1.Controls.Add(Me.tbTiltStep)
         Me.TabControl1.Controls.Add(Me.tbAutomation)
+        Me.TabControl1.Controls.Add(Me.tbConMotion)
         Me.TabControl1.Controls.Add(Me.tbAbout)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
@@ -128,6 +132,24 @@ Partial Class MainForm
         Me.AutomationPanel1.Size = New System.Drawing.Size(920, 540)
         Me.AutomationPanel1.TabIndex = 0
         '
+        'tbConMotion
+        '
+        Me.tbConMotion.Controls.Add(Me.ContinueMotionPanel1)
+        Me.tbConMotion.Location = New System.Drawing.Point(4, 22)
+        Me.tbConMotion.Name = "tbConMotion"
+        Me.tbConMotion.Padding = New System.Windows.Forms.Padding(3)
+        Me.tbConMotion.Size = New System.Drawing.Size(920, 546)
+        Me.tbConMotion.TabIndex = 5
+        Me.tbConMotion.Text = "ConMotion"
+        Me.tbConMotion.UseVisualStyleBackColor = True
+        '
+        'ContinueMotionPanel1
+        '
+        Me.ContinueMotionPanel1.Location = New System.Drawing.Point(0, 6)
+        Me.ContinueMotionPanel1.Name = "ContinueMotionPanel1"
+        Me.ContinueMotionPanel1.Size = New System.Drawing.Size(920, 540)
+        Me.ContinueMotionPanel1.TabIndex = 0
+        '
         'tbAbout
         '
         Me.tbAbout.Controls.Add(Me.AboutPanel1)
@@ -160,6 +182,7 @@ Partial Class MainForm
         Me.tbTrdControl2.ResumeLayout(False)
         Me.tbTiltStep.ResumeLayout(False)
         Me.tbAutomation.ResumeLayout(False)
+        Me.tbConMotion.ResumeLayout(False)
         Me.tbAbout.ResumeLayout(False)
         Me.ResumeLayout(False)
 
@@ -176,4 +199,6 @@ Partial Class MainForm
     Friend WithEvents TrdControlPanel2 As TrdControlPanel2
     Friend WithEvents tbAutomation As TabPage
     Friend WithEvents AutomationPanel1 As AutomationPanel
+    Friend WithEvents tbConMotion As TabPage
+    Friend WithEvents ContinueMotionPanel1 As ContinueMotionPanel
 End Class

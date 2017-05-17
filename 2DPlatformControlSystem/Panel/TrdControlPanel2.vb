@@ -1,7 +1,7 @@
 ﻿
 Public Class TrdControlPanel2
     ''' <summary>
-    ''' TrdControlPanel with linear motion as velocity mode
+    ''' TrdControlPanel with linear motion as Position mode
     ''' rotate motion as position mode
     ''' </summary>
 
@@ -30,8 +30,6 @@ Public Class TrdControlPanel2
     Dim isFeedback As Boolean = False
     Dim sbFeedback As System.Text.StringBuilder
 
-    Dim sw As IO.StreamWriter
-
     Dim LstrVel As Double
     Dim LmaxVel As Double
     Dim LTacc As Double
@@ -42,7 +40,6 @@ Public Class TrdControlPanel2
     Dim RmaxVel As Double
     Dim RTacc As Double
     Dim RTdec As Double
-    Dim RTUnif As Double
     Dim RDist As Double
     Dim axis As Short
 
@@ -78,7 +75,7 @@ Public Class TrdControlPanel2
             If motionMode = "TrdControl2" Then
                 'Verify the motion as right mode as the configure file
 
-                LinearPosModeCfg1.IsLinearVelMode = xlSheet.Range("B3").Value
+                LinearPosModeCfg1.IsLinearPosMode = xlSheet.Range("B3").Value
                 LinearPosModeCfg1.LDelayTime = xlSheet.Range("B4").Value
                 LinearPosModeCfg1.LTacc = xlSheet.Range("B5").Value
                 LinearPosModeCfg1.LTdec = xlSheet.Range("B6").Value
@@ -165,7 +162,7 @@ Public Class TrdControlPanel2
         RTdec = RotatePosModeCfg1.RTdec
         RDist = RotatePosModeCfg1.RDist
 
-        If LinearPosModeCfg1.IsLinearVelMode Then
+        If LinearPosModeCfg1.IsLinearPosMode Then
             'Linear Motion mode
             axis = 0
         End If
@@ -175,12 +172,12 @@ Public Class TrdControlPanel2
             axis = 1
         End If
 
-        If LinearPosModeCfg1.IsLinearVelMode And RotatePosModeCfg1.IsRotatePosMode Then
+        If LinearPosModeCfg1.IsLinearPosMode And RotatePosModeCfg1.IsRotatePosMode Then
             'both axis select , mixed motion mode
             axis = 2
         End If
 
-        motionMode = M_MODE.VELOCITY
+        motionMode = M_MODE.POSITION
         If LDist > 0 Then
             motionDirect = True
         Else
@@ -189,7 +186,7 @@ Public Class TrdControlPanel2
 
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         'if DAQ2005 enable, then acquire the feedback data
-        If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearVelMode Then
+        If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearPosMode Then
             isFeedback = True
             sbFeedback = New System.Text.StringBuilder
         Else
@@ -248,7 +245,6 @@ Public Class TrdControlPanel2
         End Select
 
         'waitting for axis stop motion
-        'System.Threading.Thread.Sleep(1000)
         While Not isStopMotion()
             System.Threading.Thread.Sleep(50)
         End While
@@ -325,7 +321,7 @@ Public Class TrdControlPanel2
 
     Private Sub tm_Tick(sender As Object, e As EventArgs) Handles tm.Tick
         btnMotion.Enabled = isStopMotion() And
-            (LinearPosModeCfg1.IsLinearVelMode Or RotatePosModeCfg1.IsRotatePosMode)
+            (LinearPosModeCfg1.IsLinearPosMode Or RotatePosModeCfg1.IsRotatePosMode)
 
         '如果运动停止，但2005卡仍正在取数据，按钮不可用
         If Not IsNothing(MotionThread) Then

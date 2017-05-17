@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>_2DPlatformControlSystem.My.MyApplication</StartupObject>
     <RootNamespace>_2DPlatformControlSystem</RootNamespace>
-    <AssemblyName>2DPlatformControlSystem V0.8</AssemblyName>
+    <AssemblyName>2DPlatformControlSystem V1.0</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -20,8 +21,9 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.8.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V1.0.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,8 +32,9 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V0.8.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V1.0.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -52,9 +55,10 @@
     <ApplicationIcon>Resources\2d.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Excel2013">
-      <HintPath>.\Excel2013.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -126,6 +130,12 @@
     <Compile Include="Panel\AutomationPanel.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Panel\ContinueMotionPanel.Designer.vb">
+      <DependentUpon>ContinueMotionPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Panel\ContinueMotionPanel.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Panel\TiltStepPanel.Designer.vb">
       <DependentUpon>TiltStepPanel.vb</DependentUpon>
     </Compile>
@@ -144,6 +154,12 @@
     <Compile Include="Panel\TrdControlPanel2.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="TestForm.Designer.vb">
+      <DependentUpon>TestForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Unit\CfgListBox.Designer.vb">
       <DependentUpon>CfgListBox.vb</DependentUpon>
     </Compile>
@@ -155,6 +171,12 @@
     </Compile>
     <Compile Include="Unit\DaqCfg.vb">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Unit\frmContinueMotion.Designer.vb">
+      <DependentUpon>frmContinueMotion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\frmContinueMotion.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Unit\InfoDisp.Designer.vb">
       <DependentUpon>InfoDisp.vb</DependentUpon>
@@ -192,6 +214,7 @@
     <Compile Include="Unit\PositionStatus.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Unit\PosModeCfg.vb" />
     <Compile Include="Unit\RotatePosModeCfg.Designer.vb">
       <DependentUpon>RotatePosModeCfg.vb</DependentUpon>
     </Compile>
@@ -218,6 +241,9 @@
     <EmbeddedResource Include="Panel\AutomationPanel.resx">
       <DependentUpon>AutomationPanel.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Panel\ContinueMotionPanel.resx">
+      <DependentUpon>ContinueMotionPanel.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Panel\TiltStepPanel.resx">
       <DependentUpon>TiltStepPanel.vb</DependentUpon>
     </EmbeddedResource>
@@ -227,11 +253,17 @@
     <EmbeddedResource Include="Panel\TrdControlPanel2.resx">
       <DependentUpon>TrdControlPanel2.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="TestForm.resx">
+      <DependentUpon>TestForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Unit\CfgListBox.resx">
       <DependentUpon>CfgListBox.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\DaqCfg.resx">
       <DependentUpon>DaqCfg.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\frmContinueMotion.resx">
+      <DependentUpon>frmContinueMotion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\InfoDisp.resx">
       <DependentUpon>InfoDisp.vb</DependentUpon>
@@ -256,6 +288,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
     <None Include="Configure\-0.02g_0deg.xlsx">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -286,6 +319,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="packages.config" />
     <None Include="Resources\loading.gif" />
     <Content Include="Resources\2d.ico" />
   </ItemGroup>

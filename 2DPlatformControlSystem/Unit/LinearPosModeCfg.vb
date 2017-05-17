@@ -62,7 +62,7 @@
         End Set
     End Property
 
-    Public Property IsLinearVelMode As Boolean
+    Public Property IsLinearPosMode As Boolean
         Get
             Return chkLMode.Checked
         End Get

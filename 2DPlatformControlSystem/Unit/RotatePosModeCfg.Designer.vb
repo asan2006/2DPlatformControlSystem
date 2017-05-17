@@ -40,8 +40,8 @@ Partial Class RotatePosModeCfg
         Me.Label28 = New System.Windows.Forms.Label()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.GroupBox3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -149,7 +149,6 @@ Partial Class RotatePosModeCfg
         '
         Me.txtRDelayTime.Location = New System.Drawing.Point(68, 23)
         Me.txtRDelayTime.Name = "txtRDelayTime"
-        Me.txtRDelayTime.ReadOnly = True
         Me.txtRDelayTime.Size = New System.Drawing.Size(72, 21)
         Me.txtRDelayTime.TabIndex = 1
         Me.txtRDelayTime.Text = "0"
@@ -225,15 +224,6 @@ Partial Class RotatePosModeCfg
         Me.Label29.TabIndex = 7
         Me.Label29.Text = "MaxSpeed"
         '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(139, 103)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(35, 12)
-        Me.Label30.TabIndex = 0
-        Me.Label30.Text = "DEG/S"
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
@@ -242,6 +232,15 @@ Partial Class RotatePosModeCfg
         Me.Label1.Size = New System.Drawing.Size(35, 12)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "DEG/S"
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(139, 103)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(35, 12)
+        Me.Label30.TabIndex = 0
+        Me.Label30.Text = "DEG/S"
         '
         'RotatePosModeCfg
         '
