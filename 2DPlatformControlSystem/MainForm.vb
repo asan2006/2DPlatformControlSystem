@@ -25,7 +25,7 @@
             TrdControlPanel2.tm.Enabled = True
         ElseIf tc.SelectedTab.Name = tbTiltStep.Name Then
             TiltStepPanel1.tm.Enabled = True
-        ElseIf tc.SelectedTab.name = tbConMotion.Name Then
+        ElseIf tc.SelectedTab.Name = tbConMotion.Name Then
             ContinueMotionPanel1.tm1.Enabled = True
         End If
     End Sub
