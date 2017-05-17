@@ -269,7 +269,7 @@ Partial Class DaqCfg
         Me.txtExpCondition.ScrollBars = System.Windows.Forms.ScrollBars.Both
         Me.txtExpCondition.Size = New System.Drawing.Size(213, 97)
         Me.txtExpCondition.TabIndex = 0
-        Me.txtExpCondition.Text = "here experimental conditions content will paste in excel file at cell(""W1"")"
+        Me.txtExpCondition.Text = "here experimental conditions content will paste in excel file at cell(""T1"")"
         '
         'GroupBox7
         '

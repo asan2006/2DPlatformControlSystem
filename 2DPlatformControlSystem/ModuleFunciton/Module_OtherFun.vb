@@ -171,12 +171,6 @@ Module Module_OtherFun
                 'System.Windows.Forms.Clipboard.SetDataObject(StrData)
                 ''xlSheet.Paste()
                 'xlSheet.PasteSpecial()
-                '------------------------------------------------------------------------------
-                ' here experimental conditions content will write in excel file at cell("W1")
-                'System.Windows.Forms.Clipboard.SetDataObject(StrExpCondition)
-                'xlSheet.Range("W1").PasteSpecial()
-
-                '------------------------------------------------------------------------------
 
                 '------------------------------------------------------------------------------
                 ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
