@@ -41,7 +41,7 @@ Partial Class TrdControlPanel2
         '
         Me.DaqCfg1.ADChanCount = 4
         Me.DaqCfg1.aveNum = 1
-        Me.DaqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""W1"")"
+        Me.DaqCfg1.expInfo = "here experimental conditions content will paste in excel file at cell(""T1"")"
         Me.DaqCfg1.fileName = "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE\ADLinkDaq"
         Me.DaqCfg1.IsDaqEnable = False
         Me.DaqCfg1.Location = New System.Drawing.Point(405, 3)
