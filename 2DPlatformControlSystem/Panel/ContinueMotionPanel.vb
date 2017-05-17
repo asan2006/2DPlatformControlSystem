@@ -54,6 +54,7 @@ Public Class ContinueMotionPanel
         InitializeComponent()
 
         ' 在 InitializeComponent() 调用之后添加任何初始化。
+        DaqCfg1.fileName = "ADlinkDaq"
         dgvCfg.AutoGenerateColumns = False
         dgvCfg.DataSource = posModeCfgList
         dgvCfg.Columns("cLinearPosMode").DataPropertyName = "strLineCfg"

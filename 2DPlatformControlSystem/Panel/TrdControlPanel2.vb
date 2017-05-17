@@ -59,7 +59,6 @@ Public Class TrdControlPanel2
         ' 在 InitializeComponent() 调用之后添加任何初始化。
 
         DaqCfg1.fileName = Application.StartupPath + "\ADLinkDaq"
-        'LoadCfgFile1.cfgFilePath = Application.StartupPath + "\Configure\"
     End Sub
 
     Sub LoadCfgFile1_CfgSet(fileName As String) Handles LoadCfgFile1.CfgSet
