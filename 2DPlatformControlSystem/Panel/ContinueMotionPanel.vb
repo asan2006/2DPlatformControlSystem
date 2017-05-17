@@ -193,7 +193,7 @@ Public Class ContinueMotionPanel
     End Sub
 
     Private Sub tm1_Tick(sender As Object, e As EventArgs) Handles tm1.Tick
-        btnStart.Enabled = isStopMotion()
+        btnStart.Enabled = Not motionStatus
 
         '如果运动停止，但2005卡仍正在取数据，按钮不可用
         If Not IsNothing(MotionThread) Then
