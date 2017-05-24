@@ -247,6 +247,11 @@ Public Class TrdControlPanel2
         'clear daq-2005 card async buffer
         ClearDaq2005Async(card2005)
 
+        '等待反馈数据的线程结束
+        While isFeedback
+            System.Threading.Thread.Sleep(100)
+        End While
+
         If DaqCfg1.IsDaqEnable And DaqCfg1.scanFileFormatMode = "XLS" Then
             'SAVE DATA AND SOME INFO
             dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, arrayFeedback)
@@ -287,6 +292,7 @@ Public Class TrdControlPanel2
             arrayFeedback(i, 2) = lsCurSpd(i)
         Next
         TDuration = 0
+        isFeedback = False
 
     End Sub
 
