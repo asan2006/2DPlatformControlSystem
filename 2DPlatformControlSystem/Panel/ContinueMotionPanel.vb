@@ -23,7 +23,7 @@ Public Class ContinueMotionPanel
 
     'Is feedback data acquired
     Dim isFeedback As Boolean = False
-    Dim sbFeedback As System.Text.StringBuilder
+    Dim arrayFeedback(,) As Double
 
     Dim LstrVel As Double
     Dim LmaxVel As Double
@@ -86,12 +86,10 @@ Public Class ContinueMotionPanel
         'if DAQ2005 enable, then acquire the feedback data
         If DaqCfg1.IsDaqEnable And False Then
             isFeedback = True
-            sbFeedback = New System.Text.StringBuilder
         Else
             isFeedback = False
-            sbFeedback = Nothing
         End If
-
+        ReDim arrayFeedback(0, 2)
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         'avoid invoke method
@@ -155,7 +153,7 @@ Public Class ContinueMotionPanel
 
         If DaqCfg1.IsDaqEnable And DaqCfg1.scanFileFormatMode = "XLS" Then
             'SAVE DATA AND SOME INFO
-            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, sbFeedback)
+            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, arrayFeedback)
         End If
 
     End Sub

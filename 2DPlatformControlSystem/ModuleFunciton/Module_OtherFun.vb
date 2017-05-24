@@ -28,7 +28,7 @@ Module Module_OtherFun
     ''' <remarks></remarks>
     ''' 
 
-    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
+    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
 
         'initial ScanCount and ADChanCount
         Dim ADChanCount As Integer = 4
@@ -88,7 +88,7 @@ Module Module_OtherFun
             strExperimentalCondition(i, 0) = strEC(i)
         Next
 
-        SaveToXls(strHeader, aveData, time_s, strExperimentalCondition, filename, StrChartRange, sbFeedback)
+        SaveToXls(strHeader, aveData, time_s, strExperimentalCondition, filename, StrChartRange, feedback)
     End Sub
 
 
@@ -141,7 +141,7 @@ Module Module_OtherFun
         End If
     End Function
 
-    Private Sub SaveToXls(ByVal header As String(,), ByVal data As Double(,), time As Double(,), ByVal StrExpCondition As String(,), ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
+    Private Sub SaveToXls(ByVal header As String(,), ByVal data As Double(,), time As Double(,), ByVal StrExpCondition As String(,), ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
 
         If String.IsNullOrEmpty(StrFileName) Then
             Return
@@ -174,14 +174,18 @@ Module Module_OtherFun
 
                 '------------------------------------------------------------------------------
                 ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
-                If Not IsNothing(sbFeedback) Then
+                '反馈数据数组存在则写入
+                If Not IsNothing(feedback) And feedback.GetLength(0) > 1 Then
                     Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
                     xlSheetDecoder.Name = "Decoder"
-                    System.Windows.Forms.Clipboard.SetDataObject(sbFeedback.ToString())
-                    xlSheetDecoder.Paste()
-                    'xlSheetDecoder.PasteSpecial()
+                    xlSheetDecoder.Cells(1, 1).Value2 = "Time_Duration(s)"
+                    xlSheetDecoder.Cells(1, 2).Value2 = "Send_Speed(mm/s)"
+                    xlSheetDecoder.Cells(1, 3).Value2 = "FeedBack_Speed(mm/s)"
+                    rng = xlSheetDecoder.Cells(2, 1).Resize(feedback.GetLength(0), feedback.GetLength(1))
+                    rng.Value2 = feedback
                     ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
                 End If
+
                 '------------------------------------------------------------------------------
 
                 If StrChartRange <> "" Then

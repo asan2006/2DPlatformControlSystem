@@ -28,7 +28,7 @@ Public Class TrdControlPanel2
 
     'Is feedback data acquired
     Dim isFeedback As Boolean = False
-    Dim sbFeedback As System.Text.StringBuilder
+    Dim arrayFeedback(,) As Double
 
     Dim LstrVel As Double
     Dim LmaxVel As Double
@@ -187,12 +187,10 @@ Public Class TrdControlPanel2
         'if DAQ2005 enable, then acquire the feedback data
         If DaqCfg1.IsDaqEnable And LinearPosModeCfg1.IsLinearPosMode Then
             isFeedback = True
-            sbFeedback = New System.Text.StringBuilder
         Else
             isFeedback = False
-            sbFeedback = Nothing
         End If
-
+        ReDim arrayFeedback(0, 2)
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
         'avoid invoke method
@@ -214,10 +212,6 @@ Public Class TrdControlPanel2
 
         'if DAQ2005 enable, then acquire the feedback data
         If isFeedback Then
-            'sw = New IO.StreamWriter(fileName & "_Feedback.txt", False)    'if file is exit, then cover it
-            'sw.WriteLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
-
-            sbFeedback.AppendLine("Time_Duration(s)" & vbTab & "Send_Speed(mm/s)" & vbTab & "FeedBack_Speed(mm/s)")
 
             Dim FeedbackThread As New System.Threading.Thread(AddressOf GetFeedback)
             FeedbackThread.Start()
@@ -255,12 +249,14 @@ Public Class TrdControlPanel2
 
         If DaqCfg1.IsDaqEnable And DaqCfg1.scanFileFormatMode = "XLS" Then
             'SAVE DATA AND SOME INFO
-            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, sbFeedback)
+            dataToXLSX(xlsHeader, InBuf, aveNum, expInfo, fileName, DaqCfg1.strLineChart, arrayFeedback)
         End If
     End Sub
 
     Private Sub GetFeedback()
-
+        Dim lsTimer As New List(Of Double)
+        Dim lsCurSpd As New List(Of Double)
+        Dim lsCurFeedSpd As New List(Of Double)
         While motionStatus
 
             Dim curspd As Double = CurSpeed(0)
@@ -273,14 +269,23 @@ Public Class TrdControlPanel2
                 curspd = -CurSpeed(0)
             End If
             'write motion decode data
-            sbFeedback.AppendLine(TDuration.ToString("0.0000") & vbTab & curspd & vbTab & curFeedSpd)
+            lsTimer.Add(TDuration)
+            lsCurSpd.Add(curspd)
+            lsCurFeedSpd.Add(curFeedSpd)
+
             TDuration = TDuration + (preCount - prepreCount) / CPUfreq
             'TDuration = TDuration + (preTime - prepreTime)
 
             'waiting 1ms
             System.Threading.Thread.Sleep(1)
         End While
-
+        '反馈数据以二维数组形式存储
+        ReDim arrayFeedback(lsTimer.Count - 1, 2)
+        For i = 0 To lsTimer.Count - 1
+            arrayFeedback(i, 0) = lsTimer(i)
+            arrayFeedback(i, 1) = lsCurSpd(i)
+            arrayFeedback(i, 2) = lsCurSpd(i)
+        Next
         TDuration = 0
 
     End Sub
