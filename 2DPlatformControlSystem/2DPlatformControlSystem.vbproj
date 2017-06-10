@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <StartupObject>_2DPlatformControlSystem.My.MyApplication</StartupObject>
     <RootNamespace>_2DPlatformControlSystem</RootNamespace>
-    <AssemblyName>2DPlatformControlSystem V1.1</AssemblyName>
+    <AssemblyName>2DPlatformControlSystem V1.2</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
@@ -36,7 +36,7 @@
     <DefineDebug>true</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <OutputPath>bin\Debug\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V1.1.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V1.2.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
@@ -47,7 +47,7 @@
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DocumentationFile>2DPlatformControlSystem V1.1.xml</DocumentationFile>
+    <DocumentationFile>2DPlatformControlSystem V1.2.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
@@ -67,7 +67,7 @@
     <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\2d.ico</ApplicationIcon>
+    <ApplicationIcon>Resources\2DTest.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
@@ -325,6 +325,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\2DTest.ico" />
     <None Include="packages.config" />
     <None Include="Resources\loading.gif" />
     <Content Include="Resources\2d.ico" />
