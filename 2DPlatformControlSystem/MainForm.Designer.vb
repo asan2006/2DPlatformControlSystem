@@ -22,6 +22,7 @@ Partial Class MainForm
     '不要使用代码编辑器修改它。
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MainForm))
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tbTrdControl = New System.Windows.Forms.TabPage()
         Me.TrdControlPanel1 = New _2DPlatformControlSystem.TrdControlPanel()
@@ -175,6 +176,7 @@ Partial Class MainForm
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(928, 572)
         Me.Controls.Add(Me.TabControl1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "MainForm"
         Me.Text = "2DPlatformControlSystem"
         Me.TabControl1.ResumeLayout(False)
