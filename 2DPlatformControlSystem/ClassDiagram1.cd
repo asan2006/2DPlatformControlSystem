@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Module Name="_2DPlatformControlSystem.Module_Daq2005PostTrgNoneDlbBufAsynContAI">
-    <Position X="0.5" Y="1.75" Width="3.25" />
+    <Position X="0.5" Y="1.25" Width="3.25" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAIAAAEAAIAAAAAAAAAIAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAEIAIAAABAAAAAIAAAAAAAA=</HashCode>
       <FileName>ModuleFunciton\Module_Daq2005PostTrgNoneDlbBufAsynContAI.vb</FileName>
     </TypeIdentifier>
   </Module>
   <Module Name="_2DPlatformControlSystem.Module_OtherFun">
-    <Position X="4" Y="0.5" Width="1.5" />
+    <Position X="4.5" Y="1" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>ACAAAAAAAAAAAAAAAAAAAAQAAAAAAgAAABACAAAAAgA=</HashCode>
+      <HashCode>ACAAAAAAAAAAAAAAAQAAAAQAAAAAAgAAABACAAAAAgA=</HashCode>
       <FileName>ModuleFunciton\Module_OtherFun.vb</FileName>
     </TypeIdentifier>
   </Module>
   <Module Name="_2DPlatformControlSystem.Module_Pci8158TrMoveFor2Axis">
-    <Position X="4.5" Y="0.5" Width="4.25" />
+    <Position X="7.25" Y="1.25" Width="4.25" />
     <Compartments>
       <Compartment Name="Nested Types" Collapsed="false" />
     </Compartments>
