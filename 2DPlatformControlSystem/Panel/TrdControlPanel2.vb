@@ -36,6 +36,7 @@ Public Class TrdControlPanel2
     Dim LTdec As Double
     Dim LDist As Double
     Dim LTdelay As Double
+    Dim RTdelay As Double
     Dim RstrVel As Double
     Dim RmaxVel As Double
     Dim RTacc As Double
@@ -155,6 +156,7 @@ Public Class TrdControlPanel2
         LTdec = LinearPosModeCfg1.LTdec
         LDist = LinearPosModeCfg1.LDist
         LTdelay = LinearPosModeCfg1.LDelayTime
+        RTdelay = RotatePosModeCfg1.RDelayTime
         RstrVel = RotatePosModeCfg1.RStrVel
         RmaxVel = RotatePosModeCfg1.RMaxVel
         RTacc = RotatePosModeCfg1.RTacc
@@ -222,16 +224,21 @@ Public Class TrdControlPanel2
         'pci-8158
         'Before motion begin , it is will be keep null status for some seconds. 
         'Before motion begin , it is will be keep null status for 1 second. detail at "修改需求文档20131206.docx"
-        System.Threading.Thread.Sleep(1000)
+        'move this funtion to case 0
+        'System.Threading.Thread.Sleep(1000)
         Dim LdelayTime As Double = LTdelay * 1000
+        Dim RdelayTime As Double = RTdelay * 1000
         ' VELOCITY MOTION MODE ONLY FIT AXIS
         Select Case axis
             Case 0
+                System.Threading.Thread.Sleep(LdelayTime)
                 Start_1Axis_tr_move(axis, LDist, LstrVel, LmaxVel, LTacc, LTdec)
             Case 1
+                System.Threading.Thread.Sleep(RdelayTime)
                 Start_1Axis_tr_move(axis, RDist, RstrVel, RmaxVel, RTacc, RTdec)
             Case 2
                 'rotate first, then linear motion
+                System.Threading.Thread.Sleep(RdelayTime)
                 Start_1Axis_tr_move(1, RDist, RstrVel, RmaxVel, RTacc, RTdec)
                 System.Threading.Thread.Sleep(LdelayTime)
                 Start_1Axis_tr_move(0, LDist, LstrVel, LmaxVel, LTacc, LTdec)
