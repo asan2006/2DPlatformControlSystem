@@ -7,9 +7,6 @@
     End Sub
 
     Private Sub WaitProcess()
-        Dim card2005_num As Short = 0
-        CalibrationDaq2005(card2005_num)
-
         'close the form
         Me.Invoke(DirectCast(Sub() Me.Close(), EventHandler))
     End Sub

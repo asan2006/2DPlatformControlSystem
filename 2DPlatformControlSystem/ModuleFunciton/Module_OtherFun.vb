@@ -28,17 +28,39 @@ Module Module_OtherFun
     ''' <remarks></remarks>
     ''' 
 
-    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
+    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
 
         'initial ScanCount and ADChanCount
         Dim ADChanCount As Integer = 4
         Dim ScanCount As Integer = dataBuf.GetLength(0) / ADChanCount
+        Dim xlsHeaderTime As String = "Time(S)"
 
-        'dim a stringBuilder to store the data string after average
-        Dim sb As StringBuilder = New StringBuilder
-        sb.Clear()
-        'append xls headed to string builder
-        sb.AppendLine(xlsHeader(0) + vbTab + xlsHeader(1) + vbTab + xlsHeader(2) + vbTab + xlsHeader(3))
+        ''dim a stringBuilder to store the data string after average
+        'Dim sb As StringBuilder = New StringBuilder
+        'sb.Clear()
+        ''append xls headed to string builder
+        ''加上Time(s)数据列
+        'sb.AppendLine(xlsHeaderTime + vbTab + xlsHeader(0) + vbTab + xlsHeader(1) + vbTab + xlsHeader(2) + vbTab + xlsHeader(3))
+
+        'Dim voltage(ScanCount - 1, ADChanCount - 1) As Double
+        'Dim i As Integer = 0
+        'While i < dataBuf.GetLength(0)
+        '    voltage(i / 4, 0) = Digital2Voltage(dataBuf(i))
+        '    voltage(i / 4, 1) = Digital2Voltage(dataBuf(i + 1))
+        '    voltage(i / 4, 2) = Digital2Voltage(dataBuf(i + 2))
+        '    voltage(i / 4, 3) = Digital2Voltage(dataBuf(i + 3))
+        '    i = i + 4
+        'End While
+        'Dim aveData(,) As Double = Average(voltage, aveNum)
+
+        'For j = 0 To aveData.GetLength(0) - 1
+        '    sb.Append((Dt * j).ToString + vbTab)
+        '    For k = 0 To aveData.GetLength(1) - 1
+        '        sb.Append(aveData(j, k).ToString + vbTab)
+        '    Next
+        '    sb.AppendLine()
+        'Next
+        'SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange, sbFeedback)
 
         Dim voltage(ScanCount - 1, ADChanCount - 1) As Double
         Dim i As Integer = 0
@@ -49,16 +71,24 @@ Module Module_OtherFun
             voltage(i / 4, 3) = Digital2Voltage(dataBuf(i + 3))
             i = i + 4
         End While
+
+        '表头数据
+        Dim strHeader(,) As String = New String(,) {{xlsHeaderTime, xlsHeader(0), xlsHeader(1), xlsHeader(2), xlsHeader(3)}}
+        '测试值
         Dim aveData(,) As Double = Average(voltage, aveNum)
-
-        For j = 0 To aveData.GetLength(0) - 1
-            For k = 0 To aveData.GetLength(1) - 1
-                sb.Append(aveData(j, k).ToString + vbTab)
-            Next
-            sb.AppendLine()
+        '时间列
+        Dim time_s(aveData.GetLength(0) - 1, 0) As Double
+        For i = 0 To time_s.GetLength(0) - 1
+            'time_s(i, 0) = (i + 1) * Dt
         Next
-        SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange, sbFeedback)
+        '实验条件
+        Dim strEC = experimentalCondition.Split(vbCrLf, 30, StringSplitOptions.RemoveEmptyEntries)
+        Dim strExperimentalCondition(strEC.GetLength(0), 0) As String
+        For i = 0 To strEC.GetLength(0) - 1
+            strExperimentalCondition(i, 0) = strEC(i)
+        Next
 
+        SaveToXls(strHeader, aveData, time_s, strExperimentalCondition, filename, StrChartRange, feedback)
     End Sub
 
 
@@ -111,9 +141,9 @@ Module Module_OtherFun
         End If
     End Function
 
-    Private Sub SaveToXls(ByVal StrData As String, ByVal StrExpCondition As String, ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal sbFeedback As StringBuilder = Nothing)
+    Private Sub SaveToXls(ByVal header As String(,), ByVal data As Double(,), time As Double(,), ByVal StrExpCondition As String(,), ByVal StrFileName As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
 
-        If String.IsNullOrEmpty(StrData) Or String.IsNullOrEmpty(StrFileName) Then
+        If String.IsNullOrEmpty(StrFileName) Then
             Return
         Else
             Try
@@ -122,25 +152,40 @@ Module Module_OtherFun
                 xlApp.SheetsInNewWorkbook = 1
                 Dim xlBook As Microsoft.Office.Interop.Excel.Workbook = xlApp.Workbooks.Add(True)
                 Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add()
+                Dim rng As Microsoft.Office.Interop.Excel.Range
 
-                System.Windows.Forms.Clipboard.SetDataObject(StrData)
-                xlSheet.Paste()
-                '------------------------------------------------------------------------------
-                ' here experimental conditions content will write in excel file at cell("W1")
-                System.Windows.Forms.Clipboard.SetDataObject(StrExpCondition)
-                xlSheet.Range("W1").PasteSpecial()
+                '写入表头
+                rng = xlSheet.Cells(1, 1).Resize(header.GetLength(0), header.GetLength(1))
+                rng.Value2 = header
 
-                '------------------------------------------------------------------------------
+                '写入数据
+                rng = xlSheet.Cells(2, 1).Resize(time.GetLength(0), time.GetLength(1))
+                rng.Value2 = time
+                rng = xlSheet.Cells(2, 2).Resize(data.GetLength(0), data.GetLength(1))
+                rng.Value2 = data
+
+                '写入实验条件，T1单元格
+                rng = xlSheet.Cells(1, 20).Resize(StrExpCondition.GetLength(0), StrExpCondition.GetLength(1))
+                rng.Value2 = StrExpCondition
+
+                'System.Windows.Forms.Clipboard.SetDataObject(StrData)
+                ''xlSheet.Paste()
+                'xlSheet.PasteSpecial()
 
                 '------------------------------------------------------------------------------
                 ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
-                If Not IsNothing(sbFeedback) Then
+                '反馈数据数组存在则写入
+                If Not IsNothing(feedback) And feedback.GetLength(0) > 1 Then
                     Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
                     xlSheetDecoder.Name = "Decoder"
-                    System.Windows.Forms.Clipboard.SetDataObject(sbFeedback.ToString())
-                    xlSheetDecoder.Paste()
+                    xlSheetDecoder.Cells(1, 1).Value2 = "Time_Duration(s)"
+                    xlSheetDecoder.Cells(1, 2).Value2 = "Send_Speed(mm/s)"
+                    xlSheetDecoder.Cells(1, 3).Value2 = "FeedBack_Speed(mm/s)"
+                    rng = xlSheetDecoder.Cells(2, 1).Resize(feedback.GetLength(0), feedback.GetLength(1))
+                    rng.Value2 = feedback
                     ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
                 End If
+
                 '------------------------------------------------------------------------------
 
                 If StrChartRange <> "" Then
@@ -167,7 +212,7 @@ Module Module_OtherFun
                 xlApp = Nothing
                 GC.Collect()
             Catch ex As Exception
-                MessageBox.Show("Can't creat excel object, confirm your computer has installed the excel...")
+                MessageBox.Show(ex.ToString)
             End Try
         End If
 
