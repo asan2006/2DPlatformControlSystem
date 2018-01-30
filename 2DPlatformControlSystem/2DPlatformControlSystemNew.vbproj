@@ -105,6 +105,12 @@
     <Compile Include="frmSerialTest.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmTest.Designer.vb">
+      <DependentUpon>frmTest.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTest.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Lib\AppInfo.vb" />
     <Compile Include="Lib\pci_8158.vb" />
     <Compile Include="LoadingForm.Designer.vb">
@@ -197,10 +203,19 @@
     <Compile Include="Unit\SerialPortTest.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Unit\SerialPort_Robin.Designer.vb">
+      <DependentUpon>SerialPort_Robin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Unit\SerialPort_Robin.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="frmSerialTest.resx">
       <DependentUpon>frmSerialTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTest.resx">
+      <DependentUpon>frmTest.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoadingForm.resx">
       <DependentUpon>LoadingForm.vb</DependentUpon>
@@ -243,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Unit\SerialPortTest.resx">
       <DependentUpon>SerialPortTest.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Unit\SerialPort_Robin.resx">
+      <DependentUpon>SerialPort_Robin.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

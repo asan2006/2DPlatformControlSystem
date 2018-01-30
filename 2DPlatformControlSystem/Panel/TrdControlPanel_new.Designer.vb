@@ -28,11 +28,11 @@ Partial Class TrdControlPanel_new
         Me.btnMotion = New System.Windows.Forms.Button()
         Me.tm = New System.Windows.Forms.Timer(Me.components)
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.LinearPosModeCfg1 = New _2DPlatformControlSystem.LinearPosModeCfg()
-        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
+        Me.SerialPortTest1 = New _2DPlatformControlSystem.SerialPortTest()
         Me.PositionStatus1 = New _2DPlatformControlSystem.PositionStatus()
         Me.LoadCfgFile1 = New _2DPlatformControlSystem.LoadCfgFile()
-        Me.SerialPortTest1 = New _2DPlatformControlSystem.SerialPortTest()
+        Me.LinearPosModeCfg1 = New _2DPlatformControlSystem.LinearPosModeCfg()
+        Me.RotatePosModeCfg1 = New _2DPlatformControlSystem.RotatePosModeCfg()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -79,6 +79,27 @@ Partial Class TrdControlPanel_new
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "CONFIGURE"
         '
+        'SerialPortTest1
+        '
+        Me.SerialPortTest1.Location = New System.Drawing.Point(406, 3)
+        Me.SerialPortTest1.Name = "SerialPortTest1"
+        Me.SerialPortTest1.Size = New System.Drawing.Size(510, 220)
+        Me.SerialPortTest1.TabIndex = 16
+        '
+        'PositionStatus1
+        '
+        Me.PositionStatus1.Location = New System.Drawing.Point(3, 229)
+        Me.PositionStatus1.Name = "PositionStatus1"
+        Me.PositionStatus1.Size = New System.Drawing.Size(397, 203)
+        Me.PositionStatus1.TabIndex = 15
+        '
+        'LoadCfgFile1
+        '
+        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 229)
+        Me.LoadCfgFile1.Name = "LoadCfgFile1"
+        Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 73)
+        Me.LoadCfgFile1.TabIndex = 13
+        '
         'LinearPosModeCfg1
         '
         Me.LinearPosModeCfg1.IsLinearPosMode = False
@@ -108,27 +129,6 @@ Partial Class TrdControlPanel_new
         Me.RotatePosModeCfg1.RTdec = 0.1R
         Me.RotatePosModeCfg1.Size = New System.Drawing.Size(191, 182)
         Me.RotatePosModeCfg1.TabIndex = 1
-        '
-        'PositionStatus1
-        '
-        Me.PositionStatus1.Location = New System.Drawing.Point(3, 229)
-        Me.PositionStatus1.Name = "PositionStatus1"
-        Me.PositionStatus1.Size = New System.Drawing.Size(397, 203)
-        Me.PositionStatus1.TabIndex = 15
-        '
-        'LoadCfgFile1
-        '
-        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 229)
-        Me.LoadCfgFile1.Name = "LoadCfgFile1"
-        Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 73)
-        Me.LoadCfgFile1.TabIndex = 13
-        '
-        'SerialPortTest1
-        '
-        Me.SerialPortTest1.Location = New System.Drawing.Point(406, 3)
-        Me.SerialPortTest1.Name = "SerialPortTest1"
-        Me.SerialPortTest1.Size = New System.Drawing.Size(510, 220)
-        Me.SerialPortTest1.TabIndex = 16
         '
         'TrdControlPanel_new
         '
