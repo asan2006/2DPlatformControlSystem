@@ -38,7 +38,7 @@ Partial Class frmTest
         '
         'SerialPort_Robin1
         '
-        Me.SerialPort_Robin1.Location = New System.Drawing.Point(24, 12)
+        Me.SerialPort_Robin1.Location = New System.Drawing.Point(37, 23)
         Me.SerialPort_Robin1.Name = "SerialPort_Robin1"
         Me.SerialPort_Robin1.Size = New System.Drawing.Size(583, 237)
         Me.SerialPort_Robin1.TabIndex = 0

@@ -191,3 +191,30 @@ C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPl
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.06T-no8158.exe
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.06T-no8158.xml
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.06T-no8158.pdb
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.exe.config
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.exe
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.pdb
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.xml
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbprojResolveAssemblyReference.cache
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.ResolveComReference.cache
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmSerialTest.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmTest.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.LoadingForm.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.Resources.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.TrdControlPanel_new.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.CfgListBox.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmContinueMotion.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.InfoDisp.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.LinearChart.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.LinearPosModeCfg.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.LinearVelModeCfg.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.LoadCfgFile.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.PositionStatus.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.RotatePosModeCfg.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.SerialPortTest.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.SerialPort_Robin.resources
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.GenerateResource.Cache
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.CoreCompileInputs.cache
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.exe
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.xml
+D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.pdb

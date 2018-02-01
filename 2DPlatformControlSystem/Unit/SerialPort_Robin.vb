@@ -108,4 +108,9 @@ Public Class SerialPort_Robin
         End Try
 
     End Sub
+
+    Function ParseReceiveStr(sb As StringBuilder) As Double()
+
+    End Function
+
 End Class
