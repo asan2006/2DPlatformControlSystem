@@ -195,7 +195,6 @@ D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2D
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.exe
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.pdb
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.xml
-D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbprojResolveAssemblyReference.cache
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.ResolveComReference.cache
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmSerialTest.resources
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmTest.resources

@@ -28,39 +28,13 @@ Module Module_OtherFun
     ''' <remarks></remarks>
     ''' 
 
-    Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
+    Private Sub dataToXLSX(ByVal xlsHeader() As String, ByVal dataBuf() As UShort, ByVal aveNum As Integer, ByVal experimentalCondition As String, ByVal filename As String, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
 
         'initial ScanCount and ADChanCount
         Dim ADChanCount As Integer = 4
         Dim ScanCount As Integer = dataBuf.GetLength(0) / ADChanCount
         Dim xlsHeaderTime As String = "Time(S)"
 
-        ''dim a stringBuilder to store the data string after average
-        'Dim sb As StringBuilder = New StringBuilder
-        'sb.Clear()
-        ''append xls headed to string builder
-        ''加上Time(s)数据列
-        'sb.AppendLine(xlsHeaderTime + vbTab + xlsHeader(0) + vbTab + xlsHeader(1) + vbTab + xlsHeader(2) + vbTab + xlsHeader(3))
-
-        'Dim voltage(ScanCount - 1, ADChanCount - 1) As Double
-        'Dim i As Integer = 0
-        'While i < dataBuf.GetLength(0)
-        '    voltage(i / 4, 0) = Digital2Voltage(dataBuf(i))
-        '    voltage(i / 4, 1) = Digital2Voltage(dataBuf(i + 1))
-        '    voltage(i / 4, 2) = Digital2Voltage(dataBuf(i + 2))
-        '    voltage(i / 4, 3) = Digital2Voltage(dataBuf(i + 3))
-        '    i = i + 4
-        'End While
-        'Dim aveData(,) As Double = Average(voltage, aveNum)
-
-        'For j = 0 To aveData.GetLength(0) - 1
-        '    sb.Append((Dt * j).ToString + vbTab)
-        '    For k = 0 To aveData.GetLength(1) - 1
-        '        sb.Append(aveData(j, k).ToString + vbTab)
-        '    Next
-        '    sb.AppendLine()
-        'Next
-        'SaveToXls(sb.ToString, experimentalCondition, filename, StrChartRange, sbFeedback)
 
         Dim voltage(ScanCount - 1, ADChanCount - 1) As Double
         Dim i As Integer = 0
@@ -191,6 +165,67 @@ Module Module_OtherFun
                 If StrChartRange <> "" Then
                     LineChart(xlSheet, xlSheet.Range(StrChartRange))
                 End If
+
+                'here avoid the data overwrite alert info
+                xlApp.DisplayAlerts = False
+                'xlApp.AlertBeforeOverwriting = False
+                'here avoid the defalt excel path is windows/system32
+
+                'Use it more than office 2007 version, And add the Extension name ".xlsx"
+                StrFileName = System.IO.Path.GetFullPath(StrFileName) & ".xlsx"
+                xlBook.SaveAs(StrFileName)
+
+                'Release excel application
+                xlBook.Close()
+                xlApp.Quit()
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlSheet)
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlBook)
+                System.Runtime.InteropServices.Marshal.FinalReleaseComObject(xlApp)
+                xlSheet = Nothing
+                xlBook = Nothing
+                xlApp = Nothing
+                GC.Collect()
+            Catch ex As Exception
+                MessageBox.Show(ex.ToString)
+            End Try
+        End If
+
+    End Sub
+
+
+    Sub SaveToXls2(ByVal StrData As String, ByVal StrFileName As String, Optional ByVal StrExpCondition As String = Nothing, Optional ByVal StrChartRange As String = Nothing, Optional ByVal feedback As Double(,) = Nothing)
+
+        If String.IsNullOrEmpty(StrFileName) Then
+            Return
+        Else
+            Try
+                Dim xlApp As Microsoft.Office.Interop.Excel.Application = New Microsoft.Office.Interop.Excel.Application
+                xlApp.DefaultFilePath = ""
+                xlApp.SheetsInNewWorkbook = 1
+                Dim xlBook As Microsoft.Office.Interop.Excel.Workbook = xlApp.Workbooks.Add(True)
+                Dim xlSheet As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add()
+                Dim rng As Microsoft.Office.Interop.Excel.Range
+
+                '写入数据
+
+                System.Windows.Forms.Clipboard.SetDataObject(StrData)
+                'xlSheet.Paste()
+                xlSheet.PasteSpecial()
+
+                '------------------------------------------------------------------------------
+                ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
+                '反馈数据数组存在则写入
+                If Not IsNothing(feedback) And feedback.GetLength(0) > 1 Then
+                    Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
+                    xlSheetDecoder.Name = "Decoder"
+                    xlSheetDecoder.Cells(1, 1).Value2 = "Time_Duration(s)"
+                    xlSheetDecoder.Cells(1, 2).Value2 = "Send_Speed(mm/s)"
+                    xlSheetDecoder.Cells(1, 3).Value2 = "FeedBack_Speed(mm/s)"
+                    rng = xlSheetDecoder.Cells(2, 1).Resize(feedback.GetLength(0), feedback.GetLength(1))
+                    rng.Value2 = feedback
+                    ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
+                End If
+
 
                 'here avoid the data overwrite alert info
                 xlApp.DisplayAlerts = False

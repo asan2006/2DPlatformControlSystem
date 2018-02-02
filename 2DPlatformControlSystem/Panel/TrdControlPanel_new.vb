@@ -108,7 +108,8 @@ Public Class TrdControlPanel_new
     Sub btnMotion_Click(sender As Object, e As EventArgs) Handles btnMotion.Click
 
         'open serial port data acquire
-        SerialPortTest1.btnStartTest_Click(Nothing, Nothing)
+        SerialPort_Robin1.OpenSerialPort()
+        'SerialPortTest1.btnStartTest_Click(Nothing, Nothing)
 
         'initial preCount , CPUfreq , prePos
         'QueryPerformanceCounter(preCount)
@@ -211,13 +212,17 @@ Public Class TrdControlPanel_new
         End While
 
         motionStatus = False        'Move is over , and stop to acquire decode data
-        SerialPortTest1.stopDataAcq()   'Move is over, and stop to acquire data from serial port
-
 
         '等待反馈数据的线程结束
         While isFeedback
             System.Threading.Thread.Sleep(100)
         End While
+
+        '关闭串口并保存数据
+        SerialPort_Robin1.ReleaseSP()
+        SerialPort_Robin1.SaveToXlsx()
+
+        'SerialPortTest1.stopDataAcq()   'Move is over, and stop to acquire data from serial port
 
     End Sub
 
