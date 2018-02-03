@@ -7,8 +7,10 @@ Public Class SerialPort_Robin
     Dim portClosing As Boolean = False
     '是否没有执行完invoke相关操作
     Dim listening As Boolean = False
-    'sb用来存储和处理串口数据
+    'sb用来存储和串口原始数据
     Dim sb As StringBuilder = New StringBuilder
+    'sbResult用来存储和处理串口数据
+    Dim sbResult As StringBuilder = New StringBuilder
 
     Sub New()
 
@@ -103,6 +105,8 @@ Public Class SerialPort_Robin
             Dim tmpstr = portData.Replace("i<", "").Replace(">i", "").Replace(",", vbTab)
             sb.Append(tmpstr)
 
+            Dim strResult = ParseReceiveStr(sb)
+
             'UpdateTxtCMD(portData)  '显示在命令窗口中
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -112,7 +116,7 @@ Public Class SerialPort_Robin
 
     End Sub
 
-    Function ParseReceiveStr(sb As StringBuilder) As Double()
+    Function ParseReceiveStr(sb As StringBuilder) As String
         Dim StartMarkerPos = sb.ToString.IndexOf("i<")
         Dim EndMarkerPos = sb.ToString.IndexOf(">i")
 
@@ -137,13 +141,19 @@ Public Class SerialPort_Robin
             'gzi = gzi '- g_offz
             'gti = gti '- g_offt
 
-            Return {tmr, axi, ayi, rai, gzi, gti}
+            Dim ax = axi.ToString("F4")
+            Dim ay = ayi.ToString("F4")
+            Dim ra = rai.ToString("F4")
+            Dim gz = gzi.ToString("F2")
+            Dim gt = gti.ToString("F2")
+
+            Return tmr & vbTab & ax & vbTab & ay & vbTab & ra & vbTab & gz & vbTab & gt & vbCrLf
         Else
             If EndMarkerPos >= 0 Then
                 'remove non integrity frame data
                 sb.Remove(0, EndMarkerPos + 2)  'Remove from data string bulder
             End If
-            Return Nothing
+            Return String.Empty
         End If
 
     End Function
@@ -168,4 +178,12 @@ Public Class SerialPort_Robin
         UpdateTxtCMD("Save " + txtFileName.Text + ".xlsx Completed!")
     End Sub
 
+    Private Sub btnStartTest_Click(sender As Object, e As EventArgs) Handles btnStartTest.Click
+        OpenSerialPort()
+    End Sub
+
+    Private Sub btnStopTest_Click(sender As Object, e As EventArgs) Handles btnStopTest.Click
+        ReleaseSP()
+        SaveToXlsx()
+    End Sub
 End Class

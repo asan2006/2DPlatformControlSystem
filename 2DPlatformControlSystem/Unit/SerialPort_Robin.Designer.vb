@@ -34,16 +34,21 @@ Partial Class SerialPort_Robin
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
         Me.btnFindPorts = New System.Windows.Forms.Button()
         Me.spCom = New System.IO.Ports.SerialPort(Me.components)
+        Me.btnStartTest = New System.Windows.Forms.Button()
+        Me.btnStopTest = New System.Windows.Forms.Button()
+        Me.GroupBox5 = New System.Windows.Forms.GroupBox()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         Me.cmsCMD.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
+        Me.GroupBox5.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
         Me.GroupBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer))
+        Me.GroupBox1.Controls.Add(Me.GroupBox5)
         Me.GroupBox1.Controls.Add(Me.GroupBox4)
         Me.GroupBox1.Controls.Add(Me.txtCMD)
         Me.GroupBox1.Controls.Add(Me.GroupBox3)
@@ -51,7 +56,7 @@ Partial Class SerialPort_Robin
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 0)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(486, 208)
+        Me.GroupBox1.Size = New System.Drawing.Size(486, 293)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Serial Port Setup"
@@ -61,7 +66,7 @@ Partial Class SerialPort_Robin
         Me.GroupBox4.Anchor = CType(((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GroupBox4.Controls.Add(Me.txtFileName)
-        Me.GroupBox4.Location = New System.Drawing.Point(3, 154)
+        Me.GroupBox4.Location = New System.Drawing.Point(3, 239)
         Me.GroupBox4.Name = "GroupBox4"
         Me.GroupBox4.Size = New System.Drawing.Size(477, 48)
         Me.GroupBox4.TabIndex = 6
@@ -87,7 +92,7 @@ Partial Class SerialPort_Robin
         Me.txtCMD.Multiline = True
         Me.txtCMD.Name = "txtCMD"
         Me.txtCMD.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtCMD.Size = New System.Drawing.Size(350, 128)
+        Me.txtCMD.Size = New System.Drawing.Size(350, 213)
         Me.txtCMD.TabIndex = 4
         '
         'cmsCMD
@@ -143,13 +148,42 @@ Partial Class SerialPort_Robin
         'spCom
         '
         '
+        'btnStartTest
+        '
+        Me.btnStartTest.Location = New System.Drawing.Point(3, 20)
+        Me.btnStartTest.Name = "btnStartTest"
+        Me.btnStartTest.Size = New System.Drawing.Size(104, 23)
+        Me.btnStartTest.TabIndex = 1
+        Me.btnStartTest.Text = "Start Test"
+        Me.btnStartTest.UseVisualStyleBackColor = True
+        '
+        'btnStopTest
+        '
+        Me.btnStopTest.Location = New System.Drawing.Point(3, 49)
+        Me.btnStopTest.Name = "btnStopTest"
+        Me.btnStopTest.Size = New System.Drawing.Size(104, 23)
+        Me.btnStopTest.TabIndex = 7
+        Me.btnStopTest.Text = "Stop Test"
+        Me.btnStopTest.UseVisualStyleBackColor = True
+        '
+        'GroupBox5
+        '
+        Me.GroupBox5.Controls.Add(Me.btnStartTest)
+        Me.GroupBox5.Controls.Add(Me.btnStopTest)
+        Me.GroupBox5.Location = New System.Drawing.Point(6, 153)
+        Me.GroupBox5.Name = "GroupBox5"
+        Me.GroupBox5.Size = New System.Drawing.Size(118, 79)
+        Me.GroupBox5.TabIndex = 8
+        Me.GroupBox5.TabStop = False
+        Me.GroupBox5.Text = "SerialPortTest"
+        '
         'SerialPort_Robin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.GroupBox1)
         Me.Name = "SerialPort_Robin"
-        Me.Size = New System.Drawing.Size(486, 208)
+        Me.Size = New System.Drawing.Size(486, 293)
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.GroupBox4.ResumeLayout(False)
@@ -157,6 +191,7 @@ Partial Class SerialPort_Robin
         Me.cmsCMD.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
+        Me.GroupBox5.ResumeLayout(False)
         Me.ResumeLayout(False)
 
     End Sub
@@ -172,4 +207,7 @@ Partial Class SerialPort_Robin
     Friend WithEvents ClearToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents GroupBox4 As GroupBox
     Friend WithEvents txtFileName As TextBox
+    Friend WithEvents GroupBox5 As GroupBox
+    Friend WithEvents btnStartTest As Button
+    Friend WithEvents btnStopTest As Button
 End Class

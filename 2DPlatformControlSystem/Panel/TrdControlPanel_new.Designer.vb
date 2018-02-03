@@ -118,7 +118,7 @@ Partial Class TrdControlPanel_new
         '
         'LoadCfgFile1
         '
-        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 229)
+        Me.LoadCfgFile1.Location = New System.Drawing.Point(406, 318)
         Me.LoadCfgFile1.Name = "LoadCfgFile1"
         Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 73)
         Me.LoadCfgFile1.TabIndex = 13
@@ -127,7 +127,7 @@ Partial Class TrdControlPanel_new
         '
         Me.SerialPort_Robin1.Location = New System.Drawing.Point(406, 3)
         Me.SerialPort_Robin1.Name = "SerialPort_Robin1"
-        Me.SerialPort_Robin1.Size = New System.Drawing.Size(510, 220)
+        Me.SerialPort_Robin1.Size = New System.Drawing.Size(510, 294)
         Me.SerialPort_Robin1.TabIndex = 16
         '
         'TrdControlPanel_new

@@ -69,3 +69,4 @@ D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.exe
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.xml
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.pdb
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew.vbprojResolveAssemblyReference.cache
