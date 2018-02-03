@@ -11,7 +11,7 @@
 
         'intial 8158
 
-        'initial_PCI8158() 'To be uncommented and activated later for formal test
+        initial_PCI8158() 'To be uncommented and activated later for formal test
 
         TrdControlPanel_new1.tm.Enabled = True
 

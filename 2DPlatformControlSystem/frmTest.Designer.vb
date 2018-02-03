@@ -29,7 +29,7 @@ Partial Class frmTest
         '
         'btnSTART
         '
-        Me.btnSTART.Location = New System.Drawing.Point(128, 226)
+        Me.btnSTART.Location = New System.Drawing.Point(137, 294)
         Me.btnSTART.Name = "btnSTART"
         Me.btnSTART.Size = New System.Drawing.Size(75, 23)
         Me.btnSTART.TabIndex = 1
@@ -45,7 +45,7 @@ Partial Class frmTest
         '
         'btnEND
         '
-        Me.btnEND.Location = New System.Drawing.Point(303, 226)
+        Me.btnEND.Location = New System.Drawing.Point(319, 294)
         Me.btnEND.Name = "btnEND"
         Me.btnEND.Size = New System.Drawing.Size(75, 23)
         Me.btnEND.TabIndex = 1

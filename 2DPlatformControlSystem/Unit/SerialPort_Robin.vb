@@ -61,6 +61,7 @@ Public Class SerialPort_Robin
             sb.Clear()
             spCom.Open()
             '发送命令开始接收数据
+            UpdateTxtCMD("Serial Port:" + spCom.PortName + " Opened and begin acqure data!")
             spCom.WriteLine("<ASTRT>")
         Catch ex As Exception
             'if there is an error
@@ -71,7 +72,7 @@ Public Class SerialPort_Robin
 
     Sub UpdateTxtCMD(msg As String)
         Me.Invoke(DirectCast(Sub()
-                                 txtCMD.AppendText(msg + vbCrLf)
+                                 txtCMD.AppendText(Now.ToString + " : " + msg + vbCrLf)
                              End Sub,
                              EventHandler))
     End Sub
@@ -102,7 +103,7 @@ Public Class SerialPort_Robin
             Dim tmpstr = portData.Replace("i<", "").Replace(">i", "").Replace(",", vbTab)
             sb.Append(tmpstr)
 
-            UpdateTxtCMD(portData)  '显示在命令窗口中
+            'UpdateTxtCMD(portData)  '显示在命令窗口中
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
@@ -162,7 +163,9 @@ Public Class SerialPort_Robin
     End Sub
 
     Sub SaveToXlsx()
+        UpdateTxtCMD("Writing date to Excel file...")
         SaveToXls2(sb.ToString, txtFileName.Text)
+        UpdateTxtCMD("Save " + txtFileName.Text + ".xlsx Completed!")
     End Sub
 
 End Class
