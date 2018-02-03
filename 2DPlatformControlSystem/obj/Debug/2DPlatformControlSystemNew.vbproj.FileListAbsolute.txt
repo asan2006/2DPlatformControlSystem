@@ -217,10 +217,6 @@ D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2D
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.exe
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.xml
 D:\My Work\code\ETK\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.pdb
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.exe.config
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.exe
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.pdb
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V1.07T.xml
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.ResolveComReference.cache
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmSerialTest.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.frmTest.resources
@@ -239,6 +235,10 @@ D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.SerialPortTest.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\_2DPlatformControlSystem.SerialPort_Robin.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew.vbproj.GenerateResource.Cache
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.exe
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.xml
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V1.07T.pdb
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V2.0.exe.config
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V2.0.exe
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V2.0.pdb
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Debug\2DPlatformControlSystemNew V2.0.xml
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V2.0.exe
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V2.0.xml
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Debug\2DPlatformControlSystemNew V2.0.pdb

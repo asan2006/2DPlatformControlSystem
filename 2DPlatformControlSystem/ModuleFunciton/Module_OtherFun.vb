@@ -215,15 +215,17 @@ Module Module_OtherFun
                 '------------------------------------------------------------------------------
                 ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart
                 '反馈数据数组存在则写入
-                If Not IsNothing(feedback) And feedback.GetLength(0) > 1 Then
-                    Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
-                    xlSheetDecoder.Name = "Decoder"
-                    xlSheetDecoder.Cells(1, 1).Value2 = "Time_Duration(s)"
-                    xlSheetDecoder.Cells(1, 2).Value2 = "Send_Speed(mm/s)"
-                    xlSheetDecoder.Cells(1, 3).Value2 = "FeedBack_Speed(mm/s)"
-                    rng = xlSheetDecoder.Cells(2, 1).Resize(feedback.GetLength(0), feedback.GetLength(1))
-                    rng.Value2 = feedback
-                    ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
+                If Not IsNothing(feedback) Then
+                    If feedback.GetLength(0) > 1 Then
+                        Dim xlSheetDecoder As Microsoft.Office.Interop.Excel.Worksheet = xlBook.Worksheets.Add(After:=xlSheet)
+                        xlSheetDecoder.Name = "Decoder"
+                        xlSheetDecoder.Cells(1, 1).Value2 = "Time_Duration(s)"
+                        xlSheetDecoder.Cells(1, 2).Value2 = "Send_Speed(mm/s)"
+                        xlSheetDecoder.Cells(1, 3).Value2 = "FeedBack_Speed(mm/s)"
+                        rng = xlSheetDecoder.Cells(2, 1).Resize(feedback.GetLength(0), feedback.GetLength(1))
+                        rng.Value2 = feedback
+                        ScatterChart(xlSheetDecoder, xlSheetDecoder.Range("A:A,B:B,C:C"))
+                    End If
                 End If
 
 
