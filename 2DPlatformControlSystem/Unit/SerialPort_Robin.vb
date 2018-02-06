@@ -61,6 +61,7 @@ Public Class SerialPort_Robin
         Try
             '清除字符串构造器
             sb.Clear()
+            sbResult.Clear()
             spCom.Open()
             '发送命令开始接收数据
             UpdateTxtCMD("Serial Port:" + spCom.PortName + " Opened and begin acqure data!")
@@ -102,10 +103,13 @@ Public Class SerialPort_Robin
         Try
             listening = True        '设置标记，说明我已经开始处理数据，一会儿要使用系统UI的
             Dim portData = spCom.ReadExisting
-            Dim tmpstr = portData.Replace("i<", "").Replace(">i", "").Replace(",", vbTab)
-            sb.Append(tmpstr)
+            'Dim tmpstr = portData.Replace("i<", "").Replace(">i", "").Replace(",", vbTab)
+            sb.Append(portData)
 
-            Dim strResult = ParseReceiveStr(sb)
+            While sb.ToString.IndexOf(">i") > 0
+                Dim strResult = ParseReceiveStr(sb)
+                sbResult.Append(strResult)  '添加处理后的数据到字符串构造器
+            End While
 
             'UpdateTxtCMD(portData)  '显示在命令窗口中
         Catch ex As Exception
@@ -121,8 +125,6 @@ Public Class SerialPort_Robin
         Dim EndMarkerPos = sb.ToString.IndexOf(">i")
 
         If EndMarkerPos >= 0 And StartMarkerPos >= 0 And EndMarkerPos - StartMarkerPos > 0 Then
-
-            sb.Remove(0, EndMarkerPos + 2)  'Remove from data string bulder
 
             Dim tmpstr = sb.ToString.Substring(StartMarkerPos + 2, (EndMarkerPos - StartMarkerPos - 2))
             Dim parsedData = Split(tmpstr, ",")
@@ -146,6 +148,8 @@ Public Class SerialPort_Robin
             Dim ra = rai.ToString("F4")
             Dim gz = gzi.ToString("F2")
             Dim gt = gti.ToString("F2")
+
+            sb.Remove(0, EndMarkerPos + 2)  'Remove from data string bulder
 
             Return tmr & vbTab & ax & vbTab & ay & vbTab & ra & vbTab & gz & vbTab & gt & vbCrLf
         Else
@@ -174,7 +178,7 @@ Public Class SerialPort_Robin
 
     Sub SaveToXlsx()
         UpdateTxtCMD("Writing date to Excel file...")
-        SaveToXls2(sb.ToString, txtFileName.Text)
+        SaveToXls2(sbResult.ToString, txtFileName.Text)
         UpdateTxtCMD("Save " + txtFileName.Text + ".xlsx Completed!")
     End Sub
 
