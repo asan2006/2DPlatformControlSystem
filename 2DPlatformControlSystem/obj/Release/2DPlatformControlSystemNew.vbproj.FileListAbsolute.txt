@@ -44,10 +44,6 @@ C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPl
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V1.07T.exe
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V1.07T.xml
 C:\Users\Hard\Desktop\Hard_test_project\2DPlatformControlSystemNew3.12-1228\2DPlatformControlSystemNew\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V1.07T.pdb
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.exe.config
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.exe
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.pdb
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.xml
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew.vbproj.ResolveComReference.cache
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\_2DPlatformControlSystem.frmSerialTest.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\_2DPlatformControlSystem.frmTest.resources
@@ -66,7 +62,10 @@ D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\_2DPlatformControlSystem.SerialPortTest.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\_2DPlatformControlSystem.SerialPort_Robin.resources
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew.vbproj.GenerateResource.Cache
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.exe.config
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.exe
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.pdb
+D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\bin\Release\2DPlatformControlSystemNew V2.0.xml
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.exe
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.xml
 D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew V2.0.pdb
-D:\2DPlatformProject\2DPlatformControlSystem\2DPlatformControlSystem\obj\Release\2DPlatformControlSystemNew.vbprojResolveAssemblyReference.cache

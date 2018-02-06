@@ -84,11 +84,20 @@ Public Class SerialPort_Robin
         'Release Serial Port Resource
         Try
             If spCom.IsOpen Then
+                portClosing = True
+
+                'if data acquring ,the waiting for its end.
+                While listening
+                    Application.DoEvents()
+                End While
+
                 spCom.Write("STOP")
                 spCom.Close()
-                'sb.Clear()
                 UpdateTxtCMD("Serial Port:" + spCom.PortName + " Closed!")
             End If
+
+            portClosing = False
+
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
@@ -109,9 +118,9 @@ Public Class SerialPort_Robin
             While sb.ToString.IndexOf(">i") > 0
                 Dim strResult = ParseReceiveStr(sb)
                 sbResult.Append(strResult)  '添加处理后的数据到字符串构造器
+                'UpdateTxtCMD(strResult)  '显示在命令窗口中
             End While
 
-            'UpdateTxtCMD(portData)  '显示在命令窗口中
         Catch ex As Exception
             MsgBox(ex.ToString)
         Finally
@@ -127,7 +136,14 @@ Public Class SerialPort_Robin
         If EndMarkerPos >= 0 And StartMarkerPos >= 0 And EndMarkerPos - StartMarkerPos > 0 Then
 
             Dim tmpstr = sb.ToString.Substring(StartMarkerPos + 2, (EndMarkerPos - StartMarkerPos - 2))
+            sb.Remove(0, EndMarkerPos + 2)  'Remove from data string bulder
             Dim parsedData = Split(tmpstr, ",")
+
+            If parsedData.Length <> 6 Then
+                '字符传输过程出错，丢弃这一帧数据
+                Return String.Empty
+            End If
+
             'For the test station, the only sensing axis of the gyro is z axis. So no need for other two axes. 
             'For the accelerometer, the z-axis is vertical to the rotation/acceleration plane. So no need for this axis. 
             Dim tmri = GetDouble(parsedData(0))
@@ -148,8 +164,6 @@ Public Class SerialPort_Robin
             Dim ra = rai.ToString("F4")
             Dim gz = gzi.ToString("F2")
             Dim gt = gti.ToString("F2")
-
-            sb.Remove(0, EndMarkerPos + 2)  'Remove from data string bulder
 
             Return tmr & vbTab & ax & vbTab & ay & vbTab & ra & vbTab & gz & vbTab & gt & vbCrLf
         Else
@@ -178,7 +192,8 @@ Public Class SerialPort_Robin
 
     Sub SaveToXlsx()
         UpdateTxtCMD("Writing date to Excel file...")
-        SaveToXls2(sbResult.ToString, txtFileName.Text)
+        Dim dataHeader = "Time" & vbTab & "Ex-X" & vbTab & "Ex-Y" & vbTab & "In-Y" & vbTab & "Gyro-Z" & vbTab & "Gyro-Tmp" & vbCrLf
+        SaveToXls2(dataHeader + sbResult.ToString, txtFileName.Text)
         UpdateTxtCMD("Save " + txtFileName.Text + ".xlsx Completed!")
     End Sub
 
