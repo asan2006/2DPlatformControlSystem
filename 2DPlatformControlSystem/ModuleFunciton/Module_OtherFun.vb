@@ -211,6 +211,8 @@ Module Module_OtherFun
                 System.Windows.Forms.Clipboard.SetDataObject(StrData)
                 'xlSheet.Paste()
                 xlSheet.PasteSpecial()
+                'select A1 cell
+                xlSheet.Range("A1").Select()
 
                 '------------------------------------------------------------------------------
                 ' here FeedBack data will write in new excel Sheet "Decoder" and Scatter chart

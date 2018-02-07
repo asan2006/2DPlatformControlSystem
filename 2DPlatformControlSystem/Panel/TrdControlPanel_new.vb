@@ -218,6 +218,10 @@ Public Class TrdControlPanel_new
             System.Threading.Thread.Sleep(100)
         End While
 
+        'sleep 60S after motion while data acquire still
+        Dim afterSleep = 60 * 1000
+        System.Threading.Thread.Sleep(afterSleep)
+
         '关闭串口并保存数据
         SerialPort_Robin1.ReleaseSP()
         SerialPort_Robin1.SaveToXlsx()
