@@ -87,6 +87,7 @@ Public Class TrdControlPanel_new
                 RotatePosModeCfg1.RTdec = xlSheet.Range("B12").Value
                 RotatePosModeCfg1.RMaxVel = xlSheet.Range("B13").Value
                 RotatePosModeCfg1.RDist = xlSheet.Range("B14").Value
+                SerialPort_Robin1.txtFileName.Text = xlSheet.Range("B15").Value
             End If
 
             'Release excel application

@@ -118,7 +118,7 @@ Partial Class TrdControlPanel_new
         '
         'LoadCfgFile1
         '
-        Me.LoadCfgFile1.Location = New System.Drawing.Point(406, 318)
+        Me.LoadCfgFile1.Location = New System.Drawing.Point(405, 359)
         Me.LoadCfgFile1.Name = "LoadCfgFile1"
         Me.LoadCfgFile1.Size = New System.Drawing.Size(511, 73)
         Me.LoadCfgFile1.TabIndex = 13
